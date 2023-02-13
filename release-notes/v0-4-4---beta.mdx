@@ -1,0 +1,70 @@
+---
+title: "v0.4.4 - beta"
+description: "Release date: January 30th, 2023"
+---
+
+[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+
+Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+
+### 
+
+![:sparkles:](/images)
+
+ Added features
+
+* Real-time cluster resources monitoring, including CPU, memory, storage, and throughput.
+
+* Station indicator of whether there are active producers/consumers.
+
+* Establish a secured client connection over TLS.
+
+* SDKs have the ability to pass `context objects` to the consumer `message handler` function.
+
+* Consume messages from a specific sequence number (offset).
+
+* Get the message sequence number.
+
+* Python SDK clients can produce messages as a `dictionary`.
+
+* Node.js SDK clients can produce messages as a `JS object`.
+
+* Node.js SDK users can produce headers as a `JS object`.
+
+* Broker performance improvements.
+
+* Node.js SDK (0.4.9)
+
+* Go SDK (0.2.0)
+
+* Python SDK (0.2.9)
+
+### 
+
+![:bug:](/images)
+
+ Fixed bugs
+
+* Stations/producers/consumers might appear without the user who created them.
+
+* RAFT-related logs content is being trimmed.
+
+* The "Total messages" counter was sometimes wrong on the UI main overview page.
+
+* Node.js SDK - consumers got messages in a broken format.
+
+* Stations with dead-letter messages appeared with a wrong indication of "There are no dead-letter messages"
+
+### 
+
+![:pensive:](/images)
+
+ Known issues
+
+* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection token. For now, this token is constant and randomly generated per Memphis deployment.
+
+* While using an older SDK version, an error message appears on the station overview page saying, “Error while getting notified about a poison message: Missing mandatory message headers.”
+
+* When storage capacity reaches 100%, Memphis GUI becomes unresponsive till cleaned up by at least 10%.
+
+* Resending/dropping a great amount of dead-letter messages can significantly take time.

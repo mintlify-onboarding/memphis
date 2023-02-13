@@ -1,0 +1,84 @@
+---
+title: "v0.4.3 - beta"
+description: "Release date: January 6th, 2023"
+---
+
+[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+
+Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+
+### 
+
+![:sparkles:](/images)
+
+ Added features
+
+* [DLS](/memphis/memphis/concepts/dead-letter) (dead-letter station) now supports storing messages that violate an attached schema. Stored message types can be controlled via triggers.
+
+![](/images/dlq%201.jpg)
+
+![](/images/dlq%202.jpg)
+
+* Schemaverse now supports [GraphQL](https://docs.memphis.dev/memphis/memphis/schemaverse-schema-management/formats/graphql).
+
+* Schemaverse users using Go SDK can send [protobuf](/memphis/memphis/schemaverse-schema-management/getting-started/protobuf) messages by sending map\[string\]interface{} type, **without storing the schemas locally.**
+
+* [NATS compatibility](/memphis/sdks-and-protocols/nats). Memphis is now compatible with all NATS SDKs.
+
+* REST (HTTP proxy) logs are now exposed in the logs section.
+
+* Cluster configuration. Shape your cluster configuration directly from Memphis GUI.
+
+* Attach schema to a station using the SDKs.
+
+* HTTP proxy. Generate access tokens with a dynamic expiration time.
+
+* Ability to filter system logs by type.
+
+### 
+
+![:chart_with_upwards_trend:](/images)
+
+ Enhancements
+
+* Improved broker memory utilization.
+
+* Improved real-time GUI rendering.
+
+* Broker performance improvements.
+
+* Node.js SDK (0.4.8)
+
+* Go SDK (0.1.8)
+
+* Python SDK (0.2.7)
+
+### 
+
+![:bug:](/images)
+
+ Fixed bugs
+
+* Air-gapped environments - Broken links in the GUI might appear - fixed.
+
+* When sending messages to a deleted station via the HTTP proxy, an error returned “Memphis: no responders available for request” - fixed
+
+* Async produce didn’t work in Python SDK - fixed
+
+### 
+
+![:pensive:](/images)
+
+ Known issues
+
+* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection token. For now, this token is constant and randomly generated per Memphis deployment.
+
+* While using an older SDK version, an error message appears on the station overview page saying “Error while getting notified about a poison message: Missing mandatory message headers.”
+
+* When storage capacity reaches 100%, Memphis GUI becomes unresponsive till cleaned up by at least 10%.
+
+* Stations/producers/consumers might appear without the user who created them.
+
+* Resending/dropping a great amount of dead-letter messages can significantly take time.
+
+* RAFT-related logs content is being trimmed.

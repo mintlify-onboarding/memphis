@@ -119,25 +119,56 @@
     {
       "group": "Dashboard (GUI)",
       "pages": [
-        "dashboard/",
+        "dashboard/general",
+        "dashboard/signup",
+        "dashboard/login",
+        "dashboard/overview",
+        "dashboard/stations",
+        "dashboard/users",
+        "dashboard/settings",
         {
-          "group": "",
-          "pages": [""]
+          "group": "Integrations",
+          "pages": [
+            {
+              "group": "Monitoring",
+              "pages": ["dashboard/datadog"]
+            },
+            {
+              "group": "Notifications",
+              "pages": ["dashboard/slack"]
+            },
+            {
+              "group": "Storage",
+              "pages": ["dashboard/amazon-s3"]
+            }
+          ]
         }
       ]
     },
     {
       "group": "CLI",
-      "pages": ["cli/"]
+      "pages": ["cli/installation", "cli/usage"]
     },
     {
       "group": "Release Notes",
       "pages": [
         {
-          "group": "",
-          "pages": [""]
-        },
-        "release-notes/"
+          "group": "Releases",
+          "pages": [
+            "release-notes/v0-4-4---beta",
+            "release-notes/v0-4-3---beta",
+            "release-notes/v0-4-2---beta",
+            "release-notes/v0-4-1---beta",
+            "release-notes/v0-4-0---beta",
+            "release-notes/v0-3-6---beta",
+            "release-notes/v0-3-5---beta",
+            "release-notes/v0-3-0---beta",
+            "release-notes/v0-2-2---beta",
+            "release-notes/v0-2-1---beta",
+            "release-notes/v0-2-0---beta",
+            "release-notes/v0-1-0---beta"
+          ]
+        }
       ]
     }
   ],

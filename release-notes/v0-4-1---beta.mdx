@@ -1,0 +1,58 @@
+---
+title: "v0.4.1 - beta"
+description: "Release date: November 24th, 2022"
+---
+
+[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+
+Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+
+### 
+
+![:sparkles:](/images)
+
+ Added features
+
+* Improved system logs: each log contain its source
+
+* Improved station auditing
+
+* SocketIO changed to WebSockets
+
+### 
+
+![:chart_with_upwards_trend:](/images)
+
+ Enhancements
+
+* UI improvements - "Next steps," [schemaverse](/memphis/memphis/schemaverse-schema-management), bug fixes
+
+* Broker performance improvements
+
+* Node.js SDK (0.4.5)
+
+* Go SDK (0.1.6)
+
+* Python SDK (0.2.3)
+
+### 
+
+![:bug:](/images)
+
+ Fixed bugs
+
+* Users report a rare crash with a fatal log that says “Failed to create syslogs stream: cluster readiness timeout” - fixed
+
+* Missing broker when downloading system logs file - fixed
+
+### 
+
+![:pensive:](/images)
+
+ Known issues
+
+* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection-token. For now, this token is constant and randomly generated per Memphis deployment
+
+* Users using an old version of the SDKs - An error message appears on the station overview page saying, “Error while getting notified about a poison message: Missing mandatory message headers”
+
+* When storage usage reaches 100%, Memphis UI is not responsive
