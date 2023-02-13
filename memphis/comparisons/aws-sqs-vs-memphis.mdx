@@ -1,0 +1,116 @@
+---
+title: "AWS SQS vs Memphis"
+description: "This section describes the differences between AWS SQS and Memphis"
+---
+
+## What is AWS SQS?
+
+Amazon Simple Queue Service (Amazon SQS) offers a secure, durable, and available hosted queue that lets you integrate and decouple distributed software systems and components. Amazon SQS offers common constructs such as dead-letter queues and cost allocation tags. It provides a generic web services API that you can access using any programming language that the AWS SDK supports.
+
+## What is Memphis.dev?
+
+**Memphis** is a next-generation messaging queue.
+
+A simple, robust, and durable cloud-native message broker wrapped with an entire ecosystem that enables fast and reliable development of next-generation event-driven use cases.
+
+Memphis.dev enables building next-generation applications that require large volumes of streamed and enriched data, modern protocols, zero ops, rapid development, extreme cost reduction, and a significantly lower amount of dev time for data-oriented developers and data engineers.
+
+![](/images/image.png)
+
+## Messaging
+
+| Parameter                  | Memphis                                                                                                | AWS SQS                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Benchmark                  | 300K messages per second per station (queue).                                                          | 60K-100K messages per second                                                                     |
+| Message Retention          | Policy-based (e.g., 30 days)                                                                           | Acknowledgment based                                                                             |
+| Data Type                  | Transactional, Operational                                                                             | Transactional                                                                                    |
+| Consumer Mode              | Smart broker/Smart consumer                                                                            | Smart broker/dumb consumer                                                                       |
+| Topology                   | Publish/subscribe based                                                                                | Not supporting broadcasting. 1:1 producer to subscriber                                          |
+| Payload Size               | Up to 15M                                                                                              | Max of 256KB                                                                                     |
+| Batch size                 | No limitation                                                                                          | Max of 10 messages                                                                               |
+| Use Cases                  | Massive data/high throughput cases \| Simple use cases                                                 | Simple use cases                                                                                 |
+| Delivery Guarantee         | At least once, Exactly once                                                                            | At least once                                                                                    |
+| Message ordering           | Message ordering is provided via consumer groups. By message key, messages are sent to stations.       | FIFO is optional                                                                                 |
+| Message priorities         | Unavailable                                                                                            | Unavailable                                                                                      |
+| Message lifetime           | Since station messages are kept on file/memory. This can be controlled by defining a retention policy. | Because SQS is a queue, messages are discarded after being read, and an acknowledgment is given. |
+| Clustering                 | Active-Active                                                                                          | Unavailable                                                                                      |
+| Performance                | Scale-up, Scale-out                                                                                    | No control                                                                                       |
+| Multi-region               | Supported\*                                                                                            | No                                                                                               |
+| Multi-tenancy              | Supported\*                                                                                            | No                                                                                               |
+| Read-replicas              | Supported\*                                                                                            | No                                                                                               |
+| Data striping across nodes | Supported                                                                                              | Unavailable                                                                                      |
+
+\*Available for Memphis cloud users
+
+### **Data Flow** 
+
+SQS uses a distinct, bounded data flow. Messages are created and sent by the producer and received by the consumer. 
+
+Memphis uses an unbounded data flow, with the key-value pairs continuously streaming to the assigned station.
+
+### Data Usage
+
+AWS SQS is best for transactional data, such as order formation, placement, and user requests. 
+
+Memphis works great for transactional and operational data like process operations, auditing and logging statistics, and system activity.
+
+### **Message retention** 
+
+AWS SQS pushes messages to consumers. These messages are removed from the queue once they are processed and acknowledged. 
+
+Memphis is a log. It uses continuous messages, which stay in the station (queue) until the retention period expires.
+
+### Multi-tenancy
+
+**AWS SQS** doesn't support multi-tenancy but through a lambda function, required to be code and managed by the user that acts as a router.
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.36.37.png)
+
+AWS SQS
+
+**Memphis** supports multi-tenancy using namespaces which offers a complete separation from connections, producers, consumers, security, dedicated dashboard, including node selection.
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.10.43.png)
+
+Memphis namespaces
+
+### **Observability** 
+
+Some level of observability can be received by using 3rd party apps like Cloudwatch/Datadog/New Relic. To understand the full path of a message, it is required to use AWS X-Ray and add some headers to each client. Notifications can be achieved by building a dedicated event queue with lambda triggers. Some alarms and triggers must be defined over 3rd party apps to enable lag identifications and latency in real-time.
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.38.55.png)
+
+Memphis offers full Infra-to-cluster-to-data GUI-based observability, monitoring, real-time message tracing, and notifications embedded inside the management layer, including self-healing policies based on the defined events.
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.26.04.png)
+
+Memphis GUI
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.26.51.png)
+
+Troubleshooting process
+
+![](/images/Screen%20Shot%202022-12-22%20at%2014.26.36.png)
+
+Notification Center
+
+## Features
+
+| Parameter                            | Memphis.dev                                             | AWS SQS                                               |
+| ------------------------------------ | ------------------------------------------------------- | ----------------------------------------------------- |
+| GUI                                  | Yes                                                     | Yes                                                   |
+| Schema Management                    | Yes                                                     | No                                                    |
+| Wildcard consume                     | No                                                      | Yes                                                   |
+| Stream Enrichment                    | Yes                                                     | Yes                                                   |
+| Ready-to-use source/sinks connectors | Yes                                                     | No                                                    |
+| Stream lineage                       | Yes                                                     | No                                                    |
+| Data-Level Observability             | Yes                                                     | Yes                                                   |
+| Self-healing                         | Yes + Managed service                                   | Managed service                                       |
+| Deduplication                        | Yes. Modified bloom filter                              | Deduplication interval of 5 minutes                   |
+| Dead-letter                          | Yes                                                     | Yes                                                   |
+| REST Gateway                         | Yes                                                     | No                                                    |
+| Consumer internal communication      | Experimental                                            | No                                                    |
+| Production deployment environment    | Kubernetes, Docker, Managed service                     | Managed service                                       |
+| Storage tiering                      | Disk, Memory, **S3 for Archiving**                      | Disk                                                  |
+| Notifications                        | Slack, Email, More                                      | With SNS and Cloudwatch                               |
+| SDK support                          | Node js, Python, Go, .NET, Java, NestJS, and Typescript | C++, Go, Java, .NET, Python, node.js, Rust, Ruby, PHP |

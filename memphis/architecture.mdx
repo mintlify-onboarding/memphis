@@ -1,0 +1,119 @@
+---
+title: "Architecture"
+description: "This section describes Memphis' architecture"
+---
+
+## Connectivity Diagram
+
+Memphis deployment comprised four components:
+
+**1.** GUI - The dashboard of Memphis.
+
+**2.** Broker (or brokers in cluster mode)
+
+**3\.** MongoDB - Only for UI state persistency (not used for storing messages). Will be replaced in the coming versions.
+
+![](/images/connectivity%20diagram.jpeg)
+
+MongoDB is not for data traffic but rather responsible for UI state and metadata only and will be removed soon.
+
+### Ports list
+
+| Name                 | Port  | TCP/UDP | Inter/External    | Description                                                    |
+| -------------------- | ----- | ------- | ----------------- | -------------------------------------------------------------- |
+| Dashboard/CLI        | 9000  | TCP     | External          | External port that serve CLI clients and Web UI dashboard      |
+| Client connections   | 6666  | TCP     | Internal/External | Port for TCP-based client connections with memphis SDKs        |
+| REST Gateway         | 4444  | TCP     | External          | REST gateway endpoint                                          |
+| Websocket            | 7770  | TCP     | External          | Websocket port                                                 |
+| Metrics              | 8222  | TCP     | Internal          | Memphis monitor port                                           |
+| Cluster connectivity | 6222  | TCP     | Internal          | Internal port for connectiovity between brokers in the cluster |
+| Exporter             | 7777  | TCP     | Internal          | Memphis metrics exporter port for Prometheus                   |
+| MongoDB              | 27017 | TCP     | Internal          | MongoDB port                                                   |
+
+### Network architecture diagram
+
+![](/images/Memphis%20Port%20Diagram.drawio%20(1).png)
+
+## Memphis cluster component diagram (For production)
+
+Full Kubernetes-based layout.
+
+![](/images/Memphis%20Architecture%20(1).jpg)
+
+## Ordering
+
+Ordering is guaranteed only while working with a single consumer group.
+
+![](/images/ordering.jpeg)
+
+## Mirroring
+
+Memphis is designed to run as a distributed cluster for a highly available and scalable system. The consensus algorithm responsible for atomicity within Memphis, called RAFT, and compared to Apache ZooKeeper, widely used by other projects like Kafka, does not require a witness or a standalone Quorum. RAFT is also equivalent to Paxos in fault tolerance and performance.
+
+To ensure data consistency and zero loss within complete broker’s restarts, Memphis brokers should run on different nodes and try to do it automatically. To comply with RAFT requirements which are ½ cluster size + 1, On K8S environment, three Memphis brokers will be deployed. The minimum number of brokers is three to ensure at least one node failure.
+
+![](/images/replications.jpeg)
+
+## Supported Protocols
+
+* [TCP-based SDKs](/memphis/sdks-and-protocols)
+
+* [HTTP](https://github.com/memphisdev/memphis-http-proxy)
+
+* [WebSockets](https://github.com/orgs/memphisdev/projects/2/views/1?pane=issue&itemId=14008452) \* Soon \*
+
+* gRPC \* Soon \*
+
+* MQTT \* Soon \*
+
+* AMQP \* Soon \*
+
+## Deployment sequence
+
+![](/images/Deployment%20process.jpg)
+
+## Requirements
+
+Kubernetes
+
+Docker
+
+**Minimum Requirements (No HA)**
+
+| Resource  | Quantity |
+| --------- | -------- |
+| K8S Nodes | 1        |
+| CPU       | 2 CPU    |
+| Memory    | 4GB RAM  |
+| Storage   | 12GB PVC |
+
+****
+
+**Recommended Requirements (HA)**
+
+| Resource  | Minimum Quantity  |
+| --------- | ----------------- |
+| K8S Nodes | 3                 |
+| CPU       | 4 CPU             |
+| Memory    | 8GB RAM           |
+| Storage   | 12GB PVC Per node |
+
+**Requirements (No HA)**
+
+| Resource | Quantity              |
+| -------- | --------------------- |
+| OS       | Mac / Windows / Linux |
+| CPU      | 1 CPU                 |
+| Memory   | 4GB                   |
+| Storage  | 6GB                   |
+
+## Delivery Guarantee
+
+* At least once
+
+This is achieved by the combination of published messages being persisted to the station as well as the consumer tracking delivery and acknowledgment of each message as clients receive and process them.
+
+* [Exactly once (Idempotence)](/memphis/memphis/concepts/idempotency)
+
+
+Searched terms: connectivity, cluster, ordering, mirror, mirroring, deployment, protocols, requirements, delivery guarantee

@@ -1,0 +1,151 @@
+{
+  "name": "Memphis",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#6557FF",
+    "light": "#53E4C8",
+    "dark": "#2818DA"
+  },
+  "topbarCtaButton": {
+    "name": "GitHub",
+    "icon": "github",
+    "url": "https://github.com/memphisdev/memphis-broker"
+  },
+  "topbarLinks": [
+    {
+      "name": "Contact Us",
+      "url": "mailto:team@memphis.dev"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://memphis.dev/blog/"
+    },
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://memphis.dev/discord"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/installation",
+        "getting-started/hello-world",
+        "getting-started/tutorials",
+        "getting-started/use-cases",
+        "getting-started/how-to-contribute"
+      ]
+    },
+    {
+      "group": "Memphis",
+      "pages": [
+        "memphis/overivew",
+        "memphis/architecture",
+        {
+          "group": "Concepts",
+          "pages": [
+            "memphis/concepts/message-broker",
+            "memphis/concepts/station",
+            "memphis/concepts/producer-api",
+            "memphis/concepts/consumer-api",
+            "memphis/concepts/consumer-group",
+            "memphis/concepts/storage-and-redundancy",
+            "memphis/concepts/authentication",
+            "memphis/concepts/scaling",
+            "memphis/concepts/ordering",
+            "memphis/concepts/dead-letter-station",
+            "memphis/concepts/idemotency",
+            "memphis/concepts/failover-scenarios"
+          ]
+        },
+        {
+          "group": "Scehmaverse",
+          "pages": [
+            {
+              "group": "Getting Started",
+              "pages": [
+                "memphis/schemaverse/protobuf",
+                "memphis/schemaverse/json-schema",
+                "memphis/schemaverse/graphql",
+                "memphis/schemaverse/avro"
+              ]
+            },
+            "memphis/schemaverse/kb"
+          ]
+        },
+        "memphis/cluster-configuration",
+        {
+          "group": "Comparisons",
+          "pages": [""]
+        },
+        "memphis/privacy"
+      ]
+    },
+    {
+      "group": "Deployment",
+      "pages": [
+        {
+          "group": "Cloud Deployment",
+          "pages": [
+            "deployment/cloud-deployment/deploy-on-aws",
+            "deployment/cloud-deployment/deploy-on-gcp",
+            "deployment/cloud-deployment/deploy-on-digitalocean",
+            "deployment/cloud-deployment/deploy-on-azure"
+          ]
+        },
+        {
+          "group": "Kubernete",
+          "pages": [
+            "deployment/kubernetes/1---installation",
+            "deployment/kubernetes/2---access",
+            "deployment/kubernetes/3---upgrade"
+          ]
+        },
+        "deployment/docker"
+      ]
+    },
+    {
+      "group": "SDKs and Protocols",
+      "pages": ["sdks-protocols/"]
+    },
+    {
+      "group": "Dashboard (GUI)",
+      "pages": [
+        "dashboard/",
+        {
+          "group": "",
+          "pages": [""]
+        }
+      ]
+    },
+    {
+      "group": "CLI",
+      "pages": ["cli/"]
+    },
+    {
+      "group": "Release Notes",
+      "pages": [
+        {
+          "group": "",
+          "pages": [""]
+        },
+        "release-notes/"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/Memphis_Dev",
+    "github": "https://github.com/memphisdev/memphis-broker",
+    "youtube": "https://www.youtube.com/channel/UCVdMDLCSxXOqtgrBaRUHKKg/featured",
+    "discord": "https://memphis.dev/discord",
+    "website": "https://memphis.dev/"
+  }
+}

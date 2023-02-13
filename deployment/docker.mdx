@@ -1,0 +1,127 @@
+---
+title: "Docker"
+description: "Deploy Memphis over Docker using Docker compose"
+---
+
+## Requirements
+
+Docker
+
+**Requirements (No HA)**
+
+| Resource | Quantity              |
+| -------- | --------------------- |
+| OS       | Mac / Windows / Linux |
+| CPU      | 1 CPU                 |
+| Memory   | 4GB                   |
+| Storage  | 6GB                   |
+
+**Please make sure you have** [**docker-compose**](https://docs.docker.com/compose/) **installed.**
+
+## Getting started
+
+### Step 1: Download compose.yaml file
+
+```
+curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker-compose.yml
+```
+
+### Step 2: Run the compose
+
+```
+docker compose -f docker-compose.yml -p memphis up
+```
+
+Output:
+
+```
+[+] Running 3/3
+ ⠿ Container memphis-cluster-1        Creating                                                      0.2s                                                      0.2s                                                  0.2s
+ ⠿ Container memphis-mongo-1          Creating                                                      0.2s
+```
+
+#### Deployed Containers
+
+* **memphis-cluster-1:** Three (default) MQ workers (Jetstream- and Memphis-made replicas). Responsible for data ingestion and processing, just like Kafka's brokers.
+
+* **memphis-mongo-1:** MongoDB, for Memphis internal usage.
+
+### Step 3: Access via UI / CLI / SDK
+
+UI
+
+CLI
+
+SDK
+
+The default port of the UI is 9000:
+
+```
+http://localhost:9000
+```
+
+**Default Username:** root
+
+**Default Password**: memphis
+
+**For the entire CLI reference and how to install it, please head the following page:**
+
+[CLI](/memphis/cli)
+
+
+The CLI client connects to Memphis via the UI.
+
+After installing the [CLI client](/memphis/cli), please run the following:
+
+$# mem connect  Use command: mem connect --user  \--password  \--server  Example: mem connect -u root -p memphis -s http://:Connection configuration to Memphis control plane Usage: index connect  \[options\]  Connection to Memphis control plane  Options: -u, --user  User -p, --password  Password -s, --server  Memphis control plane -h, --help display help for command
+
+
+```
+$# mem connect -u root -p memphis -s http://localhost:9000
+Connected successfully to Memphis control plane.
+```
+
+For more detailed information, head to the SDKs section below.
+
+[SDKs and Protocols](/memphis/sdks-and-protocols)
+
+#### 
+
+#### Memphis Node.JS SDK can be used to demonstrate the required parameters.
+
+```
+await memphis.connect({
+            host: "broker.sandbox.memphis.dev",
+            port: , // defaults to 6666
+            username: "",
+            connectionToken: ""
+});
+```
+
+* **host:** Usually the control plane or through the UI URL. For example "https://memphis-ui.test.com/api".
+
+* **username:** Usually "root". Head to the users' section via the UI or CLI to add more.
+
+* **connectionToken:** Each app that produces and/or consumer data with Memphis uses token authentication. **The default value is "memphis".**
+
+[Step 2 - Hello World](/memphis/getting-started/2-hello-world)
+
+## How to upgrade?
+
+### Step 1: shutdown Memphis containers
+
+```
+docker rm -f $(docker ps -a | grep -i memphis | awk '{print $1}')
+```
+
+### Step 2: remove memphis docker images
+
+```
+docker image rm -f $(docker image ls | grep -i memphis)
+```
+
+### Step 3: Reinstall memphis
+
+```
+curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker-compose.yml && docker compose -f docker-compose.yml -p memphis up
+```
