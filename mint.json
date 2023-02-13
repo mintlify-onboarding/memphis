@@ -12,7 +12,6 @@
   },
   "topbarCtaButton": {
     "name": "GitHub",
-    "icon": "github",
     "url": "https://github.com/memphisdev/memphis-broker"
   },
   "topbarLinks": [
@@ -35,7 +34,7 @@
   ],
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "👉 Getting Started",
       "pages": [
         "getting-started/installation",
         "getting-started/hello-world",
@@ -45,7 +44,7 @@
       ]
     },
     {
-      "group": "Memphis",
+      "group": "⭐ Memphis",
       "pages": [
         "memphis/overivew",
         "memphis/architecture",
@@ -90,7 +89,7 @@
       ]
     },
     {
-      "group": "Deployment",
+      "group": "📦 Deployment",
       "pages": [
         {
           "group": "Cloud Deployment",
@@ -114,7 +113,14 @@
     },
     {
       "group": "SDKs and Protocols",
-      "pages": ["sdks-protocols/"]
+      "pages": [
+        {
+          "group": "NATS",
+          "pages": ["sdks-protocols/nats", "sdks-protocols/argo-and-memphis"]
+        },
+        "sdks-protocols/rust",
+        "sdks-protocols/scala"
+      ]
     },
     {
       "group": "Dashboard (GUI)",
@@ -127,7 +133,7 @@
         "dashboard/users",
         "dashboard/settings",
         {
-          "group": "Integrations",
+          "group": "🔌 Integrations",
           "pages": [
             {
               "group": "Monitoring",
@@ -150,7 +156,7 @@
       "pages": ["cli/installation", "cli/usage"]
     },
     {
-      "group": "Release Notes",
+      "group": "📝 Release Notes",
       "pages": [
         {
           "group": "Releases",

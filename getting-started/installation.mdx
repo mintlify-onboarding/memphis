@@ -6,23 +6,28 @@ title: "Step 1 - Installation"
 
 **Memphis** is a next-generation alternative to traditional message brokers.
 
-A simple, robust, and durable cloud-native message broker wrapped with an entire ecosystem that enables cost-effective, fast, and reliable development of modern queue-based use cases.
+A simple, robust, and durable cloud-native message broker wrapped with an entire
+ecosystem that enables cost-effective, fast, and reliable development of modern
+queue-based use cases.
 
-Memphis enables the building of modern queue-based applications that require large volumes of streamed and enriched data, modern protocols, zero ops, rapid development, extreme cost reduction, and a significantly lower amount of dev time for data-oriented developers and data engineers.
+Memphis enables the building of modern queue-based applications that require
+large volumes of streamed and enriched data, modern protocols, zero ops, rapid
+development, extreme cost reduction, and a significantly lower amount of dev
+time for data-oriented developers and data engineers.
 
 **Memphis focuses on four pillars -**
 
-1. 1.  
-Developer Experience - Rapid Development, Modularity, inline processing, Schema management.
+1. Developer Experience - Rapid Development, Modularity, inline processing,
+   Schema management.
 
-2. 2.  
-Observability - Reduces troubleshooting time to near zero.
+2. Observability - Reduces troubleshooting time to near zero.
 
-3. 3.  
-Performance and Efficiency - Provide good performance while maintaining efficient resource consumption.
+3. Performance and Efficiency - Provide good performance while maintaining
+   efficient resource consumption.
 
-4. 4.  
-Stability - Queues and brokers play a critical part in the modern application's structure and should be highly available and stable as possible.
+4. Stability - Queues and brokers play a critical part in the modern
+   application's structure and should be highly available and stable as
+   possible.
 
 ## Getting started
 
@@ -31,7 +36,7 @@ Stability - Queues and brokers play a critical part in the modern application's 
 **Kubernetes**
 
 ```
-helm repo add memphis https://k8s.memphis.dev/charts/ --force-update && 
+helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis memphis/memphis --create-namespace --namespace memphis --wait
 ```
 
@@ -51,22 +56,23 @@ curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker
 
 ## Key Features (v0.4.4)
 
-* Fully optimized message broker in under 3 minutes
+- Fully optimized message broker in under 3 minutes
 
-* Easy-to-use UI, CLI, and SDKs
+- Easy-to-use UI, CLI, and SDKs
 
-* Dead-letter station (DLQ)
+- Dead-letter station (DLQ)
 
-* Data-level observability
+- Data-level observability
 
-* Runs on your Docker or Kubernetes
+- Runs on your Docker or Kubernetes
 
-* Real-time event tracing
+- Real-time event tracing
 
-* SDKs: Python, Go, Node.js, Typescript, Nest.JS, Kotlin, .NET, Java
+- SDKs: Python, Go, Node.js, Typescript, Nest.JS, Kotlin, .NET, Java
 
-* Embedded schema management using Protobuf, JSON Schema, GraphQL, Avro
+- Embedded schema management using Protobuf, JSON Schema, GraphQL, Avro
 
-* Slack integration
+- Slack integration
 
-A full roadmap can be found here [https://memphis.dev/roadmap](https://memphis.dev/roadmap)
+A full roadmap can be found here
+[https://memphis.dev/roadmap](https://memphis.dev/roadmap)
