@@ -3,70 +3,66 @@ title: "v0.4.2 - beta"
 description: "Release date: December 5th, 2022"
 ---
 
-[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+<Card
+  title="3- Upgrade"
+  icon="file"
+  href="/deployment/kubernetes/3---upgrade"
+/>
 
-Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+Please make sure your **SDKs** are **updated** to the latest version to enjoy
+new features
 
-### 
+### ✨ Added features
 
-![:sparkles:](/images)
+- Schemaverse now supports JSON schema
 
- Added features
+- Support in idempotent producers in a pre-configured time window
 
-* Schemaverse now supports JSON schema
+- Slack notifications (poison message/schema validation failure/client
+  disconnection)
 
-* Support in idempotent producers in a pre-configured time window
+- Leader and followers indication in the station overview page
 
-* Slack notifications (poison message/schema validation failure/client disconnection)
+- HTTP proxy - producing messages to a station via HTTP
 
-* Leader and followers indication in the station overview page
+### 📈 Enhancements
 
-* HTTP proxy - producing messages to a station via HTTP
+- Message payload formatting options through the UI (bytes/string/json/protobuf)
 
-### 
+- Poison messages are auto-removed when acknowledged
 
-![:chart_with_upwards_trend:](/images)
+- Improve real-time rendering of the GUI
 
- Enhancements
+- Broker performance improvements
 
-* Message payload formatting options through the UI (bytes/string/json/protobuf)
+- Node.js SDK (0.4.6)
 
-* Poison messages are auto-removed when acknowledged
+- Go SDK (0.1.7)
 
-* Improve real-time rendering of the GUI
+- Python SDK (0.2.4)
 
-* Broker performance improvements
+### 🐛 Fixed bugs
 
-* Node.js SDK (0.4.6)
+- System logs didn’t show logs from all brokers in cluster mode - fixed
 
-* Go SDK (0.1.7)
+- The stop consume function didn’t work in the GO SDK - fixed
 
-* Python SDK (0.2.4)
+- In cluster mode, memory usage is insufficient and could increase over time -
+  fixed
 
-### 
+### 😔 Known issues
 
-![:bug:](/images)
+- Authentication - Application-type users connect with Memphis (via the SDKs)
+  using a connection token. For now, this token is constant and randomly
+  generated per Memphis deployment
 
- Fixed bugs
+- Users using an old version of the SDKs - An error message appears on the
+  station overview page saying, “Error while getting notified about a poison
+  message: Missing mandatory message headers”
 
-* System logs didn’t show logs from all brokers in cluster mode - fixed
+- When storage usage reaches 100% usage, Memphis GUI becomes unresponsive
 
-* The stop consume function didn’t work in the GO SDK - fixed
+- When sending messages to a deleted station via the HTTP proxy, an error
+  returned “Memphis: no responders available for request”
 
-* In cluster mode, memory usage is insufficient and could increase over time - fixed
-
-### 
-
-![:pensive:](/images)
-
- Known issues
-
-* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection token. For now, this token is constant and randomly generated per Memphis deployment
-
-* Users using an old version of the SDKs - An error message appears on the station overview page saying, “Error while getting notified about a poison message: Missing mandatory message headers”
-
-* When storage usage reaches 100% usage, Memphis GUI becomes unresponsive
-
-* When sending messages to a deleted station via the HTTP proxy, an error returned “Memphis: no responders available for request”
-
-* Air-gapped environment - Some broken links in the GUI might appear
+- Air-gapped environment - Some broken links in the GUI might appear

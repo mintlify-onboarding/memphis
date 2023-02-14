@@ -3,68 +3,70 @@ title: "v0.4.4 - beta"
 description: "Release date: January 30th, 2023"
 ---
 
-[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+<Card
+  title="3 - Upgrade"
+  icon="file"
+  href="/deployment/kubernetes/3---upgrade"
+/>
 
-Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+Please make sure your **SDKs** are **updated** to the latest version to enjoy
+new features
 
-### 
+### ✨ Added features
 
-![:sparkles:](/images)
+- Real-time cluster resources monitoring, including CPU, memory, storage, and
+  throughput.
 
- Added features
+- Station indicator of whether there are active producers/consumers.
 
-* Real-time cluster resources monitoring, including CPU, memory, storage, and throughput.
+- Establish a secured client connection over TLS.
 
-* Station indicator of whether there are active producers/consumers.
+- SDKs have the ability to pass `context objects` to the consumer
+  `message handler` function.
 
-* Establish a secured client connection over TLS.
+- Consume messages from a specific sequence number (offset).
 
-* SDKs have the ability to pass `context objects` to the consumer `message handler` function.
+- Get the message sequence number.
 
-* Consume messages from a specific sequence number (offset).
+- Python SDK clients can produce messages as a `dictionary`.
 
-* Get the message sequence number.
+- Node.js SDK clients can produce messages as a `JS object`.
 
-* Python SDK clients can produce messages as a `dictionary`.
+- Node.js SDK users can produce headers as a `JS object`.
 
-* Node.js SDK clients can produce messages as a `JS object`.
+- Broker performance improvements.
 
-* Node.js SDK users can produce headers as a `JS object`.
+- Node.js SDK (0.4.9)
 
-* Broker performance improvements.
+- Go SDK (0.2.0)
 
-* Node.js SDK (0.4.9)
+- Python SDK (0.2.9)
 
-* Go SDK (0.2.0)
+### 🐛 Fixed bugs
 
-* Python SDK (0.2.9)
+- Stations/producers/consumers might appear without the user who created them.
 
-### 
+- RAFT-related logs content is being trimmed.
 
-![:bug:](/images)
+- The "Total messages" counter was sometimes wrong on the UI main overview page.
 
- Fixed bugs
+- Node.js SDK - consumers got messages in a broken format.
 
-* Stations/producers/consumers might appear without the user who created them.
+- Stations with dead-letter messages appeared with a wrong indication of "There
+  are no dead-letter messages"
 
-* RAFT-related logs content is being trimmed.
+### 😔 Known issues
 
-* The "Total messages" counter was sometimes wrong on the UI main overview page.
+- Authentication - Application-type users connect with Memphis (via the SDKs)
+  using a connection token. For now, this token is constant and randomly
+  generated per Memphis deployment.
 
-* Node.js SDK - consumers got messages in a broken format.
+- While using an older SDK version, an error message appears on the station
+  overview page saying, “Error while getting notified about a poison message:
+  Missing mandatory message headers.”
 
-* Stations with dead-letter messages appeared with a wrong indication of "There are no dead-letter messages"
+- When storage capacity reaches 100%, Memphis GUI becomes unresponsive till
+  cleaned up by at least 10%.
 
-### 
-
-![:pensive:](/images)
-
- Known issues
-
-* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection token. For now, this token is constant and randomly generated per Memphis deployment.
-
-* While using an older SDK version, an error message appears on the station overview page saying, “Error while getting notified about a poison message: Missing mandatory message headers.”
-
-* When storage capacity reaches 100%, Memphis GUI becomes unresponsive till cleaned up by at least 10%.
-
-* Resending/dropping a great amount of dead-letter messages can significantly take time.
+- Resending/dropping a great amount of dead-letter messages can significantly
+  take time.

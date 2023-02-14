@@ -5,33 +5,37 @@ description: "Release date: April 15th, 2022"
 
 ### ✨ Added features
 
-* Users management
+- Users management
 
-* UI
+- UI
 
-* CLI
+- CLI
 
-* Node.js SDK
+- Node.js SDK
 
-* Consumers group
+- Consumers group
 
-* Cluster mode
+- Cluster mode
 
-* K8S deployment via Helm
+- K8S deployment via Helm
 
-* Docker deployment via Docker Compose
+- Docker deployment via Docker Compose
 
-* Documentation
+- Documentation
 
 ### 😔 Known issues
 
-* Only users from type applications can connect with Memphis (SDK connection).
+- Only users from type applications can connect with Memphis (SDK connection).
 
-* Authentication - users from type applications connect with Memphis (via the SDKs) using a connection token. For now, this token is constant per Memphis environment.
+- Authentication - users from type applications connect with Memphis (via the
+  SDKs) using a connection token. For now, this token is constant per Memphis
+  environment.
 
-* System logs are not persistent.
+- System logs are not persistent.
 
-* Zombie resources (connections/producers/consumers) caused by downtime of an application connected to Memphis / downtime of Memphis during an active connection with an application.
+- Zombie resources (connections/producers/consumers) caused by downtime of an
+  application connected to Memphis / downtime of Memphis during an active
+  connection with an application.
 
-* Producers/consumers connected to a Station that has been deleted are not getting disconnected automatically
-
+- Producers/consumers connected to a Station that has been deleted are not
+  getting disconnected automatically

@@ -3,56 +3,55 @@ title: "v0.4.1 - beta"
 description: "Release date: November 24th, 2022"
 ---
 
-[3 - Upgrade](/memphis/deployment/kubernetes/how-to-upgrade)
+<Card
+  title="3- Upgrade"
+  icon="file"
+  href="/deployment/kubernetes/3---upgrade"
+/>
 
-Please make sure your **SDKs** are **updated** to the latest version to enjoy new features
+Please make sure your **SDKs** are **updated** to the latest version to enjoy
+new features
 
-### 
+### ✨ Added features
 
-![:sparkles:](/images)
+- Improved system logs: each log contain its source
 
- Added features
+- Improved station auditing
 
-* Improved system logs: each log contain its source
+- SocketIO changed to WebSockets
 
-* Improved station auditing
+###
 
-* SocketIO changed to WebSockets
+### 📈 Enhancements
 
-### 
+- UI improvements - "Next steps,"
+  [schemaverse](/memphis/memphis/schemaverse-schema-management), bug fixes
 
-![:chart_with_upwards_trend:](/images)
+- Broker performance improvements
 
- Enhancements
+- Node.js SDK (0.4.5)
 
-* UI improvements - "Next steps," [schemaverse](/memphis/memphis/schemaverse-schema-management), bug fixes
+- Go SDK (0.1.6)
 
-* Broker performance improvements
+- Python SDK (0.2.3)
 
-* Node.js SDK (0.4.5)
+### 🐛 Fixed bugs
 
-* Go SDK (0.1.6)
+- Users report a rare crash with a fatal log that says “Failed to create syslogs
+  stream: cluster readiness timeout” - fixed
 
-* Python SDK (0.2.3)
+- Missing broker when downloading system logs file - fixed
 
-### 
+### 😔 Known issues
 
-![:bug:](/images)
+Known issues
 
- Fixed bugs
+- Authentication - Application-type users connect with Memphis (via the SDKs)
+  using a connection-token. For now, this token is constant and randomly
+  generated per Memphis deployment
 
-* Users report a rare crash with a fatal log that says “Failed to create syslogs stream: cluster readiness timeout” - fixed
+- Users using an old version of the SDKs - An error message appears on the
+  station overview page saying, “Error while getting notified about a poison
+  message: Missing mandatory message headers”
 
-* Missing broker when downloading system logs file - fixed
-
-### 
-
-![:pensive:](/images)
-
- Known issues
-
-* Authentication - Application-type users connect with Memphis (via the SDKs) using a connection-token. For now, this token is constant and randomly generated per Memphis deployment
-
-* Users using an old version of the SDKs - An error message appears on the station overview page saying, “Error while getting notified about a poison message: Missing mandatory message headers”
-
-* When storage usage reaches 100%, Memphis UI is not responsive
+- When storage usage reaches 100%, Memphis UI is not responsive
