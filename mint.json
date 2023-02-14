@@ -46,7 +46,7 @@
     {
       "group": "⭐ Memphis",
       "pages": [
-        "memphis/overivew",
+        "memphis/overview",
         "memphis/architecture",
         {
           "group": "Concepts",
@@ -61,7 +61,7 @@
             "memphis/concepts/scaling",
             "memphis/concepts/ordering",
             "memphis/concepts/dead-letter-station",
-            "memphis/concepts/idemotency",
+            "memphis/concepts/idempotency",
             "memphis/concepts/failover-scenarios"
           ]
         },
@@ -71,6 +71,7 @@
             {
               "group": "Getting Started",
               "pages": [
+                "memphis/schemaverse/schemaverse",
                 "memphis/schemaverse/protobuf",
                 "memphis/schemaverse/json-schema",
                 "memphis/schemaverse/graphql",

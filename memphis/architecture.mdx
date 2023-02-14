@@ -11,7 +11,7 @@ Memphis deployment comprised four components:
 
 **2.** Broker (or brokers in cluster mode)
 
-**3\.** MongoDB - Only for UI state persistency (not used for storing messages).
+**3.** MongoDB - Only for UI state persistency (not used for storing messages).
 Will be replaced in the coming versions.
 
 ![](/memphis/images/connectivity-diagram.jpeg)
@@ -34,13 +34,13 @@ only and will be removed soon.
 
 ### Network architecture diagram
 
-![](</memphis/images/Memphis%20Port%20Diagram.drawio%20(1).png>>)
+![](/memphis/images/memphis-port-diagram.png)
 
 ## Memphis cluster component diagram (For production)
 
 Full Kubernetes-based layout.
 
-![](</memphis/images/Memphis%20Architecture%20(1).jpg>>)
+![](/memphis/images/memphis-architecture.jpg)
 
 ## Ordering
 
@@ -126,7 +126,7 @@ This is achieved by the combination of published messages being persisted to the
 station as well as the consumer tracking delivery and acknowledgment of each
 message as clients receive and process them.
 
-- [Exactly once (Idempotence)](/memphis/memphis/concepts/idempotency)
+- [Exactly once (Idempotence)](/memphis/concepts/idempotency)
 
 Searched terms: connectivity, cluster, ordering, mirror, mirroring, deployment,
 protocols, requirements, delivery guarantee
