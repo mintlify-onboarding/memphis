@@ -11,11 +11,13 @@ Memphis deployment comprised four components:
 
 **2.** Broker (or brokers in cluster mode)
 
-**3\.** MongoDB - Only for UI state persistency (not used for storing messages). Will be replaced in the coming versions.
+**3\.** MongoDB - Only for UI state persistency (not used for storing messages).
+Will be replaced in the coming versions.
 
-![](/images/connectivity%20diagram.jpeg)
+![](/memphis/images/connectivity-diagram.jpeg)
 
-MongoDB is not for data traffic but rather responsible for UI state and metadata only and will be removed soon.
+MongoDB is not for data traffic but rather responsible for UI state and metadata
+only and will be removed soon.
 
 ### Ports list
 
@@ -32,41 +34,50 @@ MongoDB is not for data traffic but rather responsible for UI state and metadata
 
 ### Network architecture diagram
 
-![](/images/Memphis%20Port%20Diagram.drawio%20(1).png)
+![](</memphis/images/Memphis%20Port%20Diagram.drawio%20(1).png>>)
 
 ## Memphis cluster component diagram (For production)
 
 Full Kubernetes-based layout.
 
-![](/images/Memphis%20Architecture%20(1).jpg)
+![](</memphis/images/Memphis%20Architecture%20(1).jpg>>)
 
 ## Ordering
 
 Ordering is guaranteed only while working with a single consumer group.
 
-![](/images/ordering.jpeg)
+![](/memphis/images/ordering.jpeg)
 
 ## Mirroring
 
-Memphis is designed to run as a distributed cluster for a highly available and scalable system. The consensus algorithm responsible for atomicity within Memphis, called RAFT, and compared to Apache ZooKeeper, widely used by other projects like Kafka, does not require a witness or a standalone Quorum. RAFT is also equivalent to Paxos in fault tolerance and performance.
+Memphis is designed to run as a distributed cluster for a highly available and
+scalable system. The consensus algorithm responsible for atomicity within
+Memphis, called RAFT, and compared to Apache ZooKeeper, widely used by other
+projects like Kafka, does not require a witness or a standalone Quorum. RAFT is
+also equivalent to Paxos in fault tolerance and performance.
 
-To ensure data consistency and zero loss within complete broker’s restarts, Memphis brokers should run on different nodes and try to do it automatically. To comply with RAFT requirements which are ½ cluster size + 1, On K8S environment, three Memphis brokers will be deployed. The minimum number of brokers is three to ensure at least one node failure.
+To ensure data consistency and zero loss within complete broker’s restarts,
+Memphis brokers should run on different nodes and try to do it automatically. To
+comply with RAFT requirements which are ½ cluster size + 1, On K8S environment,
+three Memphis brokers will be deployed. The minimum number of brokers is three
+to ensure at least one node failure.
 
-![](/images/replications.jpeg)
+![](/memphis/images/replications.jpeg)
 
 ## Supported Protocols
 
-* [TCP-based SDKs](/memphis/sdks-and-protocols)
+- [TCP-based SDKs](/memphis/sdks-and-protocols)
 
-* [HTTP](https://github.com/memphisdev/memphis-http-proxy)
+- [HTTP](https://github.com/memphisdev/memphis-http-proxy)
 
-* [WebSockets](https://github.com/orgs/memphisdev/projects/2/views/1?pane=issue&itemId=14008452) \* Soon \*
+- [WebSockets](https://github.com/orgs/memphisdev/projects/2/views/1?pane=issue&itemId=14008452) \*
+  Soon \*
 
-* gRPC \* Soon \*
+- gRPC \* Soon \*
 
-* MQTT \* Soon \*
+- MQTT \* Soon \*
 
-* AMQP \* Soon \*
+- AMQP \* Soon \*
 
 ## Deployment sequence
 
@@ -87,7 +98,7 @@ Docker
 | Memory    | 4GB RAM  |
 | Storage   | 12GB PVC |
 
-****
+---
 
 **Recommended Requirements (HA)**
 
@@ -109,11 +120,13 @@ Docker
 
 ## Delivery Guarantee
 
-* At least once
+- At least once
 
-This is achieved by the combination of published messages being persisted to the station as well as the consumer tracking delivery and acknowledgment of each message as clients receive and process them.
+This is achieved by the combination of published messages being persisted to the
+station as well as the consumer tracking delivery and acknowledgment of each
+message as clients receive and process them.
 
-* [Exactly once (Idempotence)](/memphis/memphis/concepts/idempotency)
+- [Exactly once (Idempotence)](/memphis/memphis/concepts/idempotency)
 
-
-Searched terms: connectivity, cluster, ordering, mirror, mirroring, deployment, protocols, requirements, delivery guarantee
+Searched terms: connectivity, cluster, ordering, mirror, mirroring, deployment,
+protocols, requirements, delivery guarantee

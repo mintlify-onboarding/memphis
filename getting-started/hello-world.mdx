@@ -1,321 +1,342 @@
 ---
 title: "Step 2 - Hello World"
+description: "Creating your 1st station, producer, and consumer!"
 ---
-
-Creating your 1st station, producer, and consumer!
 
 Please follow the steps below in your preferred language.
 
-Node.js
+<Tabs>
 
-TypeScript
-
-NestJS
-
-Go
-
-Python
+<Tab title="Node.js" >
 
 Please make sure you have node.js [installed](https://nodejs.org/en/download/)
 
 **Step 1:** Create an empty dir for the node.js project
 
-```
+```bash
 mkdir memphis-demo && \
 cd memphis-demo
 ```
 
 **Step 2:** Create a new node project (If needed)
 
-```
+```bash
 npm init -y
 ```
 
 **Step 3:** Install memphis node.js SDK
 
-```
+```bash
 npm install memphis-dev
 ```
 
 **Step 4:** Create a new .js file called `producer.js`
 
-producer.js
-
-```
+```js producer.js
 const memphis = require("memphis-dev");
 
 (async function () {
-    let memphisConnection
+  let memphisConnection;
 
-    try {
-        memphisConnection = await memphis.connect({
-            host: '',
-            username: '',
-            connectionToken: ''
-        });
+  try {
+    memphisConnection = await memphis.connect({
+      host: "",
+      username: "",
+      connectionToken: "",
+    });
 
-        const producer = await memphisConnection.producer({
-            stationName: '',
-            producerName: ''
-        });
+    const producer = await memphisConnection.producer({
+      stationName: "",
+      producerName: "",
+    });
 
-        const headers = memphis.headers()
-        headers.add('key', 'value')
-        await producer.produce({
-            message: Buffer.from("Message: Hello world"), // you can also send JS object - {}
-            headers: headers
-        });
+    const headers = memphis.headers();
+    headers.add("key", "value");
+    await producer.produce({
+      message: Buffer.from("Message: Hello world"), // you can also send JS object - {}
+      headers: headers,
+    });
 
-        memphisConnection.close();
-    } catch (ex) {
-        console.log(ex);
-        if (memphisConnection) memphisConnection.close();
-    }
+    memphisConnection.close();
+  } catch (ex) {
+    console.log(ex);
+    if (memphisConnection) memphisConnection.close();
+  }
 })();
-        
 ```
 
 **Step 5:** Run `producer.js`
 
-```
+```bash
 node producer.js
 ```
 
 **Step 6:** Create a new .js file called `consumer.js`
 
-consumer.js
+```js consumer.js
+const memphis = require("memphis-dev");
 
-const memphis = require('memphis-dev');  (async function () { let memphisConnection;  try { memphisConnection = await memphis.connect({ host: '', username: '', connectionToken: '' });  const consumer = await memphisConnection.consumer({ stationName: '<station\_name', consumername: '', consumerGroup: '' });  consumer.setContext({ key: "value" }); consumer.on('message', (message, context) => { console.log(message.getData().toString()); message.ack(); const headers = message.getHeaders() });  consumer.on('error', (error) => {}); } catch (ex) { console.log(ex); if (memphisConnection) memphisConnection.close(); } })();</station\_name',>
+(async function () {
+  let memphisConnection;
+
+  try {
+    memphisConnection = await memphis.connect({
+      host: "<Memphis_hostname>",
+      username: "<application_type_user>",
+      connectionToken: "<connection_token>",
+    });
+
+    const consumer = await memphisConnection.consumer({
+      stationName: "<station_name",
+      consumerName: "<consumer_name>",
+      consumerGroup: "<consumer_group_name>",
+    });
+
+    consumer.setContext({ key: "value" });
+    consumer.on("message", (message, context) => {
+      console.log(message.getData().toString());
+      message.ack();
+      const headers = message.getHeaders();
+    });
+
+    consumer.on("error", (error) => {});
+  } catch (ex) {
+    console.log(ex);
+    if (memphisConnection) memphisConnection.close();
+  }
+})();
+```
 
 **Step 7:** Run `consumer.js`
 
-```
+```bash
 node consumer.js
 ```
+
+</Tab>
+
+<Tab title="TypeScript" >
 
 Please make sure you have node.js [installed](https://nodejs.org/en/download/)
 
 **Step 1:** Create an empty dir for the node.js project
 
-```
+```bash
 mkdir memphis-demo && \
 cd memphis-demo
 ```
 
 **Step 2:** Create a new node project (If needed)
 
-```
+```bash
 npm init -y
 ```
 
 **Step 3:** Install memphis node.js SDK
 
-```
+```bash
 npm install memphis-dev
 ```
 
 **Step 4:** Create a new .ts file called `producer.ts`
 
-producer.ts
-
-```
-import memphis from 'memphis-dev';
-import type { Memphis } from 'memphis-dev/types';
+```ts producer.ts
+import memphis from "memphis-dev";
+import type { Memphis } from "memphis-dev/types";
 
 (async function () {
-    let memphisConnection: Memphis;
+  let memphisConnection: Memphis;
 
-    try {
-        memphisConnection = await memphis.connect({
-            host: '',
-            username: '',
-            connectionToken: ''
-        });
+  try {
+    memphisConnection = await memphis.connect({
+      host: "",
+      username: "",
+      connectionToken: "",
+    });
 
-        const producer = await memphisConnection.producer({
-            stationName: 'STATION_NAME',
-            producerName: 'PRODUCER_NAME'
-        });
+    const producer = await memphisConnection.producer({
+      stationName: "STATION_NAME",
+      producerName: "PRODUCER_NAME",
+    });
 
-            const headers = memphis.headers()
-            headers.add('key', 'value');
-            await producer.produce({
-                message: Buffer.from("Message: Hello world"), // you can also send JS object - {}
-                headers: headers
-            });
+    const headers = memphis.headers();
+    headers.add("key", "value");
+    await producer.produce({
+      message: Buffer.from("Message: Hello world"), // you can also send JS object - {}
+      headers: headers,
+    });
 
-        memphisConnection.close();
-    } catch (ex) {
-        console.log(ex);
-        if (memphisConnection) memphisConnection.close();
-    }
+    memphisConnection.close();
+  } catch (ex) {
+    console.log(ex);
+    if (memphisConnection) memphisConnection.close();
+  }
 })();
 ```
 
 **Step 5:** Run `producer.ts`
 
-```
+```bash
 node producer.ts
 ```
 
 **Step 6:** Create a new .ts file called `consumer.ts`
 
-consumer.ts
-
-```
-import memphis from 'memphis-dev';
-import { Memphis, Message } from 'memphis-dev/types';
+```ts consumer.ts
+import memphis from "memphis-dev";
+import { Memphis, Message } from "memphis-dev/types";
 
 (async function () {
-    let memphisConnection: Memphis;
+  let memphisConnection: Memphis;
 
-    try {
-        memphisConnection = await memphis.connect({
-            host: '',
-            username: '',
-            connectionToken: ''
-        });
+  try {
+    memphisConnection = await memphis.connect({
+      host: "",
+      username: "",
+      connectionToken: "",
+    });
 
-        const consumer = await memphisConnection.consumer({
-            stationName: 'STATION_NAME',
-            consumerName: 'CONSUMER_NAME',
-            consumerGroup: 'CONSUMER_GROUP_NAME'
-        });
+    const consumer = await memphisConnection.consumer({
+      stationName: "STATION_NAME",
+      consumerName: "CONSUMER_NAME",
+      consumerGroup: "CONSUMER_GROUP_NAME",
+    });
 
-        consumer.setContext({ key: "value" });
-        consumer.on('message', (message: Message, context: object) => {
-            console.log(message.getData().toString());
-            message.ack();
-            const headers = message.getHeaders()
-        });
+    consumer.setContext({ key: "value" });
+    consumer.on("message", (message: Message, context: object) => {
+      console.log(message.getData().toString());
+      message.ack();
+      const headers = message.getHeaders();
+    });
 
-        consumer.on('error', (error) => {
-            console.log(error);
-        });
-    } catch (ex) {
-        console.log(ex);
-        if (memphisConnection) memphisConnection.close();
-    }
+    consumer.on("error", (error) => {
+      console.log(error);
+    });
+  } catch (ex) {
+    console.log(ex);
+    if (memphisConnection) memphisConnection.close();
+  }
 })();
 ```
 
 **Step 7:** Run `consumer.ts`
 
-```
+```bash
 node consumer.ts
 ```
+
+</Tab>
+
+<Tab title="NestJS" >
 
 Please make sure you have node.js [installed](https://nodejs.org/en/download/)
 
 **Step 1:** Create an empty dir for the node.js project
 
-```
+```bash
 mkdir memphis-demo && \
 cd memphis-demo
 ```
 
 **Step 2:** Create a new node project (If needed)
 
-```
+```bash
 npm init -y
 ```
 
 **Step 3:** Install memphis node.js SDK
 
-```
+```bash
 npm install memphis-dev
 ```
 
 **Step 4:** Create a new .ts file called `producer.module.ts`
 
-producer.module.ts
-
-```
+```ts producer.module.ts
 import { Module } from "@nestjs/common";
-import { MemphisModule, MemphisService } from "memphis-dev/nest"
-import type { Memphis } from 'memphis-dev/types';
+import { MemphisModule, MemphisService } from "memphis-dev/nest";
+import type { Memphis } from "memphis-dev/types";
 @Module({
-    imports: [MemphisModule.register()],
+  imports: [MemphisModule.register()],
 })
 export class ProducerModule {
-    constructor(private memphis: MemphisService) { }
+  constructor(private memphis: MemphisService) {}
 
-    startProducer() {
-        (async function () {
-            let memphisConnection: Memphis;
-            
-            try {
-                memphisConnection = await this.memphis.connect({
-                    host: '',
-                    username: '',
-                    connectionToken: ''
-                });
+  startProducer() {
+    (async function () {
+      let memphisConnection: Memphis;
 
-                const producer = await memphisConnection.producer({
-                    stationName: 'STATION_NAME',
-                    producerName: 'PRODUCER_NAME'
-                });
+      try {
+        memphisConnection = await this.memphis.connect({
+          host: "",
+          username: "",
+          connectionToken: "",
+        });
 
-                for (let index = 0; index < 100; index++) {
-                    await producer.produce({
-                        message: Buffer.from(`Message #${index}: Hello world`) // you can also send JS object - {}
-                    });
-                    console.log("Message sent");
-                }
+        const producer = await memphisConnection.producer({
+          stationName: "STATION_NAME",
+          producerName: "PRODUCER_NAME",
+        });
 
-                console.log("All messages sent");
-                memphisConnection.close();
-            } catch (ex) {
-                console.log(ex);
-                if (memphisConnection)
-                    memphisConnection.close();
-            }
-        })();
-    }
+        for (let index = 0; index < 100; index++) {
+          await producer.produce({
+            message: Buffer.from(`Message #${index}: Hello world`), // you can also send JS object - {}
+          });
+          console.log("Message sent");
+        }
+
+        console.log("All messages sent");
+        memphisConnection.close();
+      } catch (ex) {
+        console.log(ex);
+        if (memphisConnection) memphisConnection.close();
+      }
+    })();
+  }
 }
 ```
 
 **Step 5:** Create a new .ts file called `consumer.controller.ts`
 
-consumer.controller.ts
+```ts consumer.controller.ts
+import { Controller } from "@nestjs/common";
+import { consumeMessage } from "memphis-dev/nest";
+import type { Message } from "memphis-dev/types";
 
-```
-import { Controller } from '@nestjs/common';
-import { consumeMessage } from 'memphis-dev/nest';
-import type { Message } from 'memphis-dev/types';
-
-@Controller('auth')
+@Controller("auth")
 export class ExampleController {
-    @consumeMessage({
-        stationName: '',
-        consumerName: '',
-        consumerGroup: ''
-    })
-    async messageHandler(message: Message) {
-        console.log(message.getData().toString());
-        message.ack();
-    }
+  @consumeMessage({
+    stationName: "",
+    consumerName: "",
+    consumerGroup: "",
+  })
+  async messageHandler(message: Message) {
+    console.log(message.getData().toString());
+    message.ack();
+  }
 }
 ```
 
+</Tab>
+
+<Tab title="Go" >
+
 **Step 1:** Create an empty dir for the Go project
 
-```
+```bash
 mkdir memphis-demo && \
 cd memphis-demo
 ```
 
 **Step 2:** In your project's directory, install Memphis Go SDK
 
-```
+```bash
 go get github.com/memphisdev/memphis.go
 ```
 
 **Step 3:** Create a new Go file called `producer.go`
 
-producer.go
-
-```
+```go producer.go
 package main
 
 import (
@@ -353,15 +374,13 @@ func main() {
 
 **Step 4:** Run `producer.go`
 
-```
+```bash
 go run producer.go
 ```
 
 **Step 5:** Create a new Go file called `consumer.go`
 
-consumer.go
-
-```
+```go consumer.go
 package main
 
 import (
@@ -417,66 +436,66 @@ func main() {
 
 **Step 6:** Run `consumer.go`
 
-```
+```bash
 go run consumer.go
 ```
 
+</Tab>
+
+<Tab title="Python" >
+
 **Step 1:** Create an empty dir for the Go project
 
-```
+```bash
 mkdir memphis-demo && \
 cd memphis-demo
 ```
 
 **Step 2:** In your project's directory, install Memphis Python SDK
 
-```
+```bash
 pip3 install --upgrade memphis-py
 ```
 
 **Step 3:** Create a new Python file called `producer.py`
 
-producer.py
-
-```
+```py producer.py
 import asyncio
 from memphis import Memphis, Headers, MemphisError, MemphisConnectError, MemphisHeaderError, MemphisSchemaError
-        
+
 async def main():
     try:
         memphis = Memphis()
         await memphis.connect(host="MEMPHIS_HOSTNAME", username="MEMPHIS_APPLICATION_USER", connection_token="MEMPHIS_CONNECTION_TOKEN")
-        
+
         producer = await memphis.producer(station_name="STATION_NAME", producer_name="PRODUCER_NAME")
         headers = Headers()
-        headers.add("key", "value") 
+        headers.add("key", "value")
         for i in range(5):
             await producer.produce(bytearray('Message #'+str(i)+': Hello world', 'utf-8'), headers=headers) # you can send the message parameter as dict as well
-        
+
     except (MemphisError, MemphisConnectError, MemphisHeaderError, MemphisSchemaError) as e:
         print(e)
-        
+
     finally:
         await memphis.close()
-        
+
 if __name__ == '__main__':
     asyncio.run(main())
 ```
 
 **Step 4:** Run `producer.py`
 
-```
+```bash
 python3 producer.py
 ```
 
 **Step 5:** Create a new Python file called `consumer.py`
 
-consumer.py
-
-```
+```py consumer.py
 import asyncio
 from memphis import Memphis, MemphisError, MemphisConnectError, MemphisHeaderError
-        
+
 async def main():
     async def msg_handler(msgs, error, context):
         try:
@@ -489,29 +508,33 @@ async def main():
         except (MemphisError, MemphisConnectError, MemphisHeaderError) as e:
             print(e)
             return
-        
+
     try:
         memphis = Memphis()
         await memphis.connect(host="MEMPHIS_HOSTNAME", username="MEMPHIS_APPLICATION_USER", connection_token="MEMPHIS_CONNECTION_TOKEN")
-        
+
         consumer = await memphis.consumer(station_name="STATION_NAME", consumer_name="CONSUMER_NAME", consumer_group="CONSUMER_GROUP_NAME")
         consumer.set_context({"key": "value"})
         consumer.consume(msg_handler)
         # Keep your main thread alive so the consumer will keep receiving data
         await asyncio.Event().wait()
-        
+
     except (MemphisError, MemphisConnectError) as e:
         print(e)
-        
+
     finally:
         await memphis.close()
-        
+
 if __name__ == '__main__':
     asyncio.run(main())
 ```
 
 **Step 6:** Run `consumer.py`
 
-```
+```bash
 python3 consumer.py
 ```
+
+</Tab>
+
+</Tabs>

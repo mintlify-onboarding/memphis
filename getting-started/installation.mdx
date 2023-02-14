@@ -40,7 +40,10 @@ helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis memphis/memphis --create-namespace --namespace memphis --wait
 ```
 
-[For more detailed information about Memphis K8S deployment](/memphis/deployment/kubernetes).
+<Card
+  title="For more detailed information about Memphis K8S deployment"
+  href="/deployment/kubernetes/1---installation"
+/>
 
 **Docker compose (Syntax for v2)**
 
@@ -48,7 +51,10 @@ helm install memphis memphis/memphis --create-namespace --namespace memphis --wa
 curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker-compose.yml && docker compose -f docker-compose.yml -p memphis up
 ```
 
-[For more detailed information about Memphis docker deployment](/memphis/deployment/docker-compose).
+<Card
+  title="For more detailed information about Memphis docker deployment"
+  href="/deployment/docker"
+/>
 
 ### How does it work?
 
@@ -74,5 +80,4 @@ curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker
 
 - Slack integration
 
-A full roadmap can be found here
-[https://memphis.dev/roadmap](https://memphis.dev/roadmap)
+A full roadmap can be found [here](https://memphis.dev/roadmap)
