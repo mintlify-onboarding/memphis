@@ -5,15 +5,22 @@ description: "Use Datadog as an external monitoring tool to monitor Memphis"
 
 ## Introduction
 
-As Datadog is one of the popular tools for centralized monitoring, Memphis provides a Prometheus exporter to enable Datadog users to monitor Memphis in K8S deployment only.
+As Datadog is one of the popular tools for centralized monitoring, Memphis
+provides a Prometheus exporter to enable Datadog users to monitor Memphis in K8S
+deployment only.
 
-Please make sure you have the [Datadog K8S agent](https://docs.datadoghq.com/containers/kubernetes/installation/?tab=operator) installed.
+<Warning>
+  Please make sure you have the [Datadog K8S
+  agent](https://docs.datadoghq.com/containers/kubernetes/installation/?tab=operator)
+  installed.
+</Warning>
 
 ## Getting started
 
 ### Step 1: Make sure your Memphis Prometheus exporter is on
 
-**If you haven't** installed Memphis with the `exporter.enabled` yet - (\* `websocket.tls` are optional for a superior GUI experience)
+**If you haven't** installed Memphis with the `exporter.enabled` yet - (\*
+`websocket.tls` are optional for a superior GUI experience)
 
 ```
 helm install memphis memphis \
@@ -34,34 +41,35 @@ helm upgrade --set exporter.enabled=true memphis --namespace memphis --reuse-val
 
 ### Step 2: Add Datadog annotation to Memphis statefulset
 
-Add Datadog annotation to the `memphis-broker` statefulset to expose Prometheus metrics to datadog agent:
+Add Datadog annotation to the `memphis-broker` statefulset to expose Prometheus
+metrics to datadog agent:
 
 ```
 kubectl edit sts memphis-broker -n memphis
 ```
 
-```
+```yaml
 # (...)
 spec:
-# (...)
+  # (...)
   template:
     metadata:
       annotations:
         # (...)
         # Add the following section
         ad.datadoghq.com/metrics.checks: |
-           {
-             "openmetrics": {
-               "instances": [
-                 {
-                   "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
-                   "namespace": "memphis",
-                   "metrics": [".*"]
-                 }
-               ]
-             }
-           }
-# (...)
+          {
+            "openmetrics": {
+              "instances": [
+                {
+                  "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
+                  "namespace": "memphis",
+                  "metrics": [".*"]
+                }
+              ]
+            }
+          }
+  # (...)
   spec:
     name: metrics
 ```
@@ -74,14 +82,20 @@ cat <
 
 ### Step 3: Check Datadog for Memphis metrics
 
-Reach your Datadog account -> Metrics -> Summary, and check if "memphis" metrics arrives.
+Reach your Datadog account -> Metrics -> Summary, and check if "memphis" metrics
+arrives.
 
-![](/images/Screenshot%202023-01-24%20at%2012.14.53.png)
+![](/dashboard/images/Screenshot%202023-01-24%20at%2012.14.53.png)
 
 ### Step 4: Import the Memphis dashboard
 
-A Datadog [tutorial](https://docs.datadoghq.com/dashboards/#copy-import-or-export-dashboard-json) on how to import a dashboard.
+A Datadog
+[tutorial](https://docs.datadoghq.com/dashboards/#copy-import-or-export-dashboard-json)
+on how to import a dashboard.
 
 Memphis dashboard .json file to download -
 
-[https://raw.githubusercontent.com/memphisdev/gitbook-backup/master/dashboard-gui/integrations/monitoring/MemphisDashboard.json](https://raw.githubusercontent.com/memphisdev/gitbook-backup/master/dashboard-gui/integrations/monitoring/MemphisDashboard.json)
+<Card
+  title="https://raw.githubusercontent.com/memphisdev/gitbook-backup/master/dashboard-gui/integrations/monitoring/MemphisDashboard.json"
+  href="https://raw.githubusercontent.com/memphisdev/gitbook-backup/master/dashboard-gui/integrations/monitoring/MemphisDashboard.json"
+></Card>

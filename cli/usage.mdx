@@ -7,7 +7,7 @@ description: "Working with Memphis CLI"
 
 ### Connect
 
-Once connected, all features offered by Memphis are available.
+<Check>Once connected, all features offered by Memphis are available.</Check>
 
 #### Connection to Memphis control plane:
 
@@ -19,29 +19,31 @@ $ mem connect -s  -u root -p memphis
 
 ```
 -u, --user                 User
--p, --password   Password
--s, --server       Memphis broker
+-p, --password             Password
+-s, --server               Memphis broker
 -h, --help                 display help for command
 ```
 
 #### Example:
 
 ```
-$ mem connect -u root -p memphis -s http://localhost:9000                       
+$ mem connect -u root -p memphis -s http://localhost:9000
 Connected successfully to Memphis control plane.
 ```
 
 ### Stations
 
-A station is Memphis' version of a queue/topic/channel/subject.
+<Info>A station is Memphis' version of a queue/topic/channel/subject.</Info>
 
-$ mem station  \[options\]
+```
+$ mem station [options]
+```
 
 #### Station commands:
 
 ```
    ls                List of stations
-   create            Create new station  
+   create            Create new station
    info              Specific station's info
    del               Delete a station
 ```
@@ -50,25 +52,24 @@ $ mem station  \[options\]
 
 ```
   -f, --factory                   Factory name
-  -rt, --retentiontype     Retention type
-  -rv, --retentionvalue   Retention value
-  -s, --storage              Storage type
-  -r, --replicas                 Replicas
-  -ipw, --idempotency   Idempotency window in ms
-  -h, --help                               display help for command
+  -rt, --retentiontype            Retention type
+  -rv, --retentionvalue           Retention value
+  -s, --storage                   Storage type
+  -r, --replicas                  Replicas
+  -ipw, --idempotency             Idempotency window in ms
+  -h, --help                      display help for command
 ```
 
 #### Examples:
 
 ```
-$ mem station ls                 
+$ mem station ls
 ┌─────────┬────────┬────────────────┬────────────────────┬──────────────┬──────────┬───────────────────────┬────────────┬───────────────┬──────────────┐
 │ (index) │  name  │ retention type │ retentention value │ storage type │ replicas │ idempotency window ms │ created by │ creation date │ last_update  │
 ├─────────┼────────┼────────────────┼────────────────────┼──────────────┼──────────┼───────────────────────┼────────────┼───────────────┼──────────────┤
 │    0    │ 'test' │   'messages'   │       604800       │    'disk'    │    1     │        120000         │   'root'   │ '2022-12-04'  │ '2022-12-04' │
 └─────────┴────────┴────────────────┴────────────────────┴──────────────┴──────────┴───────────────────────┴────────────┴───────────────┴──────────────┘
 ```
-
 
 ```
 $ mem station create mystation
@@ -88,8 +89,7 @@ $ mem station ls
 └─────────┴─────────────┴───────────────────┴────────────────────┴──────────────┴──────────┴───────────────────────┴────────────┴───────────────┴──────────────┘
 ```
 
-
-```
+```yaml
 $ mem station info mystation
 Station info:
 {
@@ -125,15 +125,17 @@ $ mem station ls
 
 ### Users
 
-You can manage users and permissions.
+<Info>You can manage users and permissions.</Info>
 
-$ mem user  \[options\]
+```
+$ mem user [options]
+```
 
 #### User commands:
 
 ```
    ls                List of users
-   add               Add new user  
+   add               Add new user
    del               Delete user
 ```
 
@@ -141,10 +143,10 @@ $ mem user  \[options\]
 
 ```
   -u, --username           Username
-  -p, --password   User password
-  -t, --type           User type (default: "management") - application/management
-  -a, --avatar         Avatar id (default: 1) -  1-4
-  -h, --help                      display help for command
+  -p, --password           User password
+  -t, --type               User type (default: "management") - application/management
+  -a, --avatar             Avatar id (default: 1) -  1-4
+  -h, --help               display help for command
 ```
 
 #### Examples:
@@ -165,7 +167,7 @@ User shay was created.
 ```
 
 ```
-$ mem user add --ame sveta --type application --avatar 3 
+$ mem user add --ame sveta --type application --avatar 3
 { type: 'application', avatar: '3', name: 'sveta' }
 User sveta was created.
 Broker connection credentials: imeD5g08Bz8mbJavU4zi
@@ -208,7 +210,7 @@ A producer is an entity that can send messages into stations.
 
 ```
   -s, --station   Producers by station
-  -h, --help                    display help for command
+  -h, --help      display help for command
 ```
 
 #### Examples:
@@ -236,7 +238,7 @@ A consumer is an entity that can consume messages from stations.
 
 ```
   -s, --station   Consumers by station
-  -h, --help                    display help for command
+  -h, --help      display help for command
 ```
 
 #### Examples:
@@ -261,21 +263,18 @@ $ mem init
 
 'mem init' creates an example project for connecting an app with Memphis.
 
-The default language is nodejs.
-If you want to use different language use 'mem init -l/--language '.
-Currently supported languages: nodejs.
+The default language is nodejs. If you want to use different language use 'mem
+init -l/--language '. Currently supported languages: nodejs.
 
 For more help use 'mem init -h'.
 
-The project will be created in directory /Users/myUser/myCurrentDir
- continue? Y/n
-index.js was created.
+The project will be created in directory /Users/myUser/myCurrentDir continue?
+Y/n index.js was created.
 ```
-
 
 ### Cluster info
 
-Information about your Memphis cluster.
+<Info>Information about your Memphis cluster.</Info>
 
 #### Examples:
 
@@ -285,5 +284,4 @@ $ mem cluster info
 Cluster Info:
 
 Memphis version: 0.4.2
-
 ```
