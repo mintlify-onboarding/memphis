@@ -2,19 +2,18 @@
 title: "JSON Schema"
 ---
 
-[JSON Schema](https://json-schema.org/) is a vocabulary that allows you to annotate and validate JSON documents. It provides clear human- and machine-readable documentation and offers data validation which is useful for Automated testing—ensuring the quality of client-submitted data.
+[JSON Schema](https://json-schema.org/) is a vocabulary that allows you to
+annotate and validate JSON documents. It provides clear human- and
+machine-readable documentation and offers data validation which is useful for
+Automated testing—ensuring the quality of client-submitted data.
 
 ### Supported Features
 
-* Versioning
-
-* Embedded serialization
-
-* Producer Live evolution
-
-* Import packages (soon)
-
-* Import types (soon)
+- Versioning
+- Embedded serialization
+- Producer Live evolution
+- Import packages (soon)
+- Import types (soon)
 
 ## Getting started
 
@@ -22,123 +21,142 @@ title: "JSON Schema"
 
 #### Step 1: Create a new schema
 
-GUI
+<Tabs>
 
-SDK
+<Tab title="GUI">
 
 Head to the "Schemaverse" page
 
-![](/images/Screen%20Shot%202022-11-10%20at%2015.22.17.png)
+![](/memphis/schemaverse/images/Screen%20Shot%202022-11-10%20at%2015.22.17.png)
 
 Create a new schema by clicking on "Create from blank"
 
-![](/images/Screen%20Shot%202023-01-08%20at%2023.21.55.png)
+![](/memphis/schemaverse/images/Screen%20Shot%202023-01-08%20at%2023.21.55.png)
+
+</Tab>
+
+<Tab title="SDK" >
 
 Soon.
 
+</Tab>
+
+</Tabs>
+
 #### Step 2: Attach
 
-GUI
+<Tabs>
 
-SDK
+<Tab title="GUI" >
 
 Head to your station, and on the top-left corner, click on "+ Attach schema"
 
-![](/images/Screen%20Shot%202022-11-10%20at%2016.02.31.png)
+![](/memphis/schemaverse/images/Screen%20Shot%202022-11-10%20at%2016.02.31.png)
 
-![](/images/Screen%20Shot%202022-11-10%20at%2016.02.38.png)
+![](/memphis/schemaverse/images/Screen%20Shot%202022-11-10%20at%2016.02.38.png)
+
+</Tab>
+
+<Tab title="SDK" >
 
 It can be found through the different [SDKs](/memphis/sdks-and-protocols) docs.
 
+</Tab>
+
+</Tabs>
+
 ### Produce a message (Serialization)
 
-Node.js
+<Tabs>
 
-Go
+<Tab title="Node.js" >
 
-Python
+Memphis abstracts the need for external serialization functions and embeds them
+within the SDK.
 
-TypeScript
-
-Memphis abstracts the need for external serialization functions and embeds them within the SDK.
-
-In node.js, we can simply produce an object. Behind the scenes, the object will be serialized based on the attached schema and data format - protobuf.
+In node.js, we can simply produce an object. Behind the scenes, the object will
+be serialized based on the attached schema and data format - protobuf.
 
 **Example schema:**
 
-```
+```json
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "contact_details",
-	"type": "object",
-	"properties": {
-		"fname": {
-			"type": "string"
-		},
-		"lname": {
-			"type": "string"
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "contact_details",
+  "type": "object",
+  "properties": {
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    }
+  }
 }
 ```
 
 **Code:**
 
-```
+```js
 const memphis = require("memphis-dev");
 
 (async function () {
+  try {
+    await memphis.connect({
+      host: "MEMPHIS_BROKER_URL",
+      username: "APPLICATION_USER",
+      connectionToken: "CONNECTION_TOKEN",
+    });
+    const producer = await memphis.producer({
+      stationName: "STATION_NAME",
+      producerName: "PRODUCER_NAME",
+    });
+    var payload = {
+      fname: "Daniel",
+      lname: "Craig",
+    };
     try {
-        await memphis.connect({
-            host: "MEMPHIS_BROKER_URL",
-            username: "APPLICATION_USER",
-            connectionToken: "CONNECTION_TOKEN"
-        });
-        const producer = await memphis.producer({
-            stationName: "STATION_NAME",
-            producerName: "PRODUCER_NAME"
-        });
-        var payload = {
-            fname: "Daniel",
-            lname: "Craig",
-        };
-        try {
-            await producer.produce({
-                message: payload
-        });
-        } catch (ex) {
-            console.log(ex.message)
-        }
+      await producer.produce({
+        message: payload,
+      });
     } catch (ex) {
-        console.log(ex);
-        memphis.close();
+      console.log(ex.message);
     }
+  } catch (ex) {
+    console.log(ex);
+    memphis.close();
+  }
 })();
 ```
 
-Memphis abstracts the need for external serialization functions and embeds them within the SDK.
+</Tab>
+
+<Tab title="Go" >
+
+Memphis abstracts the need for external serialization functions and embeds them
+within the SDK.
 
 **Example schema:**
 
-```
+```json
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "contact_details",
-	"type": "object",
-	"properties": {
-		"fname": {
-			"type": "string"
-		},
-		"lname": {
-			"type": "string"
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "contact_details",
+  "type": "object",
+  "properties": {
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    }
+  }
 }
 ```
 
 **Code:**
 
-```
+```go
 package main
 
 import (
@@ -177,29 +195,34 @@ func main() {
 
 ```
 
-Memphis abstracts the need for external serialization functions and embeds them within the SDK.
+</Tab>
+
+<Tab title="Python" >
+
+Memphis abstracts the need for external serialization functions and embeds them
+within the SDK.
 
 **Example schema:**
 
-```
+```json
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "contact_details",
-	"type": "object",
-	"properties": {
-		"fname": {
-			"type": "string"
-		},
-		"lname": {
-			"type": "string"
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "contact_details",
+  "type": "object",
+  "properties": {
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    }
+  }
 }
 ```
 
 **Code:**
 
-```
+```py
 import asyncio
 import json
 from memphis import Memphis, Headers, MemphisError, MemphisConnectError, MemphisSchemaError
@@ -230,78 +253,92 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-Memphis abstracts the need for external serialization functions and embeds them within the SDK.
+</Tab>
+
+<Tab title="TypeScript" >
+
+Memphis abstracts the need for external serialization functions and embeds them
+within the SDK.
 
 **Example schema:**
 
-```
+```json
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "contact_details",
-	"type": "object",
-	"properties": {
-		"fname": {
-			"type": "string"
-		},
-		"lname": {
-			"type": "string"
-		}
-	}
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "contact_details",
+  "type": "object",
+  "properties": {
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    }
+  }
 }
 ```
 
 **Code:**
 
-```
-import memphis from 'memphis-dev';
-import type { Memphis } from 'memphis-dev/types';
+```ts
+import memphis from "memphis-dev";
+import type { Memphis } from "memphis-dev/types";
 
 (async function () {
-    let memphisConnection: Memphis;
+  let memphisConnection: Memphis;
 
-    try {
-        memphisConnection = await memphis.connect({
-            host: 'MEMPHIS_BROKER_URL',
-            username: 'APPLICATION_TYPE_USERNAME',
-            connectionToken: 'CONNECTION_TOKEN'
-        });
+  try {
+    memphisConnection = await memphis.connect({
+      host: "MEMPHIS_BROKER_URL",
+      username: "APPLICATION_TYPE_USERNAME",
+      connectionToken: "CONNECTION_TOKEN",
+    });
 
-        const producer = await memphisConnection.producer({
-            stationName: 'STATION_NAME',
-            producerName: 'PRODUCER_NAME'
-        });
+    const producer = await memphisConnection.producer({
+      stationName: "STATION_NAME",
+      producerName: "PRODUCER_NAME",
+    });
 
-        const headers = memphis.headers()
-        headers.add('key', 'value');
-        const msg = {
-            fname: "Bob",
-            lname: "Marley",
-        }
-        await producer.produce({
-            message: msg,
-            headers: headers
-        });
+    const headers = memphis.headers();
+    headers.add("key", "value");
+    const msg = {
+      fname: "Bob",
+      lname: "Marley",
+    };
+    await producer.produce({
+      message: msg,
+      headers: headers,
+    });
 
-        memphisConnection.close();
-    } catch (ex) {
-        console.log(ex);
-    }
+    memphisConnection.close();
+  } catch (ex) {
+    console.log(ex);
+  }
 })();
 ```
 
+</Tab>
+
+</Tabs>
+
 ### Consume a message (Deserialization)
 
-Node.js
+<CodeGroup>
 
-Go
-
-Python
-
-TypeScript
+```js Node.js
 
 ```
 
+```go Go
+
 ```
 
+```py Python
 
+```
 
+```ts TypeScript
+
+```
+
+</CodeGroup>
