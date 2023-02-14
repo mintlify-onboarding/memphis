@@ -9,7 +9,10 @@ description: "Procedure for upgrading memphis"
 helm uninstall memphis -n memphis
 ```
 
-**Data will not be lost!** PVCs are not removed and will be re-attached to the new installation
+<Warning>
+  **Data will not be lost!** PVCs are not removed and will be re-attached to the
+  new installation
+</Warning>
 
 ### Step 2: Upgrade Memphis helm repo
 

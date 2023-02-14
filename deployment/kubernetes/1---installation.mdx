@@ -3,8 +3,18 @@ title: "1 - Installation"
 description: "Deploy Memphis over Kubernetes"
 ---
 
+<iframe
+  width="831"
+  height="468"
+  src="https://www.youtube.com/embed/OmUJXqvFK4M"
+  title="How to install memphis{dev} broker v0.2.0 using Helm over Minikube"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
 If you prefer using **Terraform**, head
-[here](/memphis/deployment/cloud-deployment)
+[here](/deployment/cloud-deployment/deploy-on-aws)
 
 Helm is a k8s package manager that allows users to deploy apps in a single,
 configurable command.
@@ -16,9 +26,9 @@ Memphis is cloud-native and agnostic to any Kubernetes on **any cloud**.
 
 ## Requirements
 
-Kubernetes
+<Tabs>
 
-Docker
+<Tab title="Kubernetes" >
 
 **Minimum Requirements (No HA)**
 
@@ -40,6 +50,10 @@ Docker
 | Memory                     | 8GB RAM           |
 | Storage                    | 12GB PVC Per node |
 
+</Tab>
+
+<Tab title="Docker" >
+
 **Requirements (No HA)**
 
 | Resource | Quantity              |
@@ -49,9 +63,15 @@ Docker
 | Memory   | 4GB                   |
 | Storage  | 6GB                   |
 
+</Tab>
+
+</Tabs>
+
 ## Installation
 
-Production
+<AccordionGroup>
+
+<Accordion title= "Production">
 
 Production-grade Memphis with three memphis brokers configured in cluster-mode
 
@@ -60,7 +80,9 @@ helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis --set cluster.enabled="true" memphis/memphis --create-namespace --namespace memphis --wait
 ```
 
-Dev
+</Accordion>
+
+<Accordion title="Dev">
 
 Standard installation of Memphis with a single broker
 
@@ -68,6 +90,10 @@ Standard installation of Memphis with a single broker
 helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis memphis/memphis --create-namespace --namespace memphis --wait
 ```
+
+</Accordion>
+
+</AccordionGroup>
 
 #### Helm Install Options
 
@@ -209,7 +235,7 @@ kubectl create secret generic memphis-client-tls-secret \
 
 memphis-client-tls-secret
 
-```
+```yaml
 tls:
   secret:
     name: memphis-client-tls-secret
