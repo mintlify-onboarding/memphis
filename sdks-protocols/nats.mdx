@@ -1,34 +1,37 @@
 ---
 title: "NATS"
+sidebarTitle: "Overview"
 description: "Since v0.4.3, Memphis supports standard NATS SDKs"
 ---
 
 ## Introduction
 
-As memphis started from NATS, it was natural to support NATS SDKs as well. 
+As memphis started from NATS, it was natural to support NATS SDKs as well.
 
 The added motivation is -
 
-* To enable Memphis users to enjoy the broad reach and integrations of the NATS ecosystem.
+- To enable Memphis users to enjoy the broad reach and integrations of the NATS
+  ecosystem.
 
-* To enable NATS users to make use of Memphis without code changes
+- To enable NATS users to make use of Memphis without code changes
 
 ## Limitations
 
-* NATS SDKs version - Compatibility with NATS 2.9 and above.
+- NATS SDKs version - Compatibility with NATS 2.9 and above.
 
-* Without Memphis SDK, the following Memphis features will be disabled:  
-   * Producers/Consumers observability  
-   * Schemaverse
+- Without Memphis SDK, the following Memphis features will be disabled:
+  - Producers/Consumers observability
+  - Schemaverse
 
 ## Requirements
 
-Memphis operates at the stream level. For a NATS "subject" to be seen and managed by Memphis, it must first be wrapped by a stream.
+Memphis operates at the stream level. For a NATS "subject" to be seen and
+managed by Memphis, it must first be wrapped by a stream.
 
 For example:
 
 ```
-nats stream add  -s :6666 --user=:: 
+nats stream add  -s :6666 --user=::
 ? Stream Name argo_event_source
 ? Subjects foo
 ? Storage file
@@ -49,4 +52,7 @@ Stream argo_event_source was created
 
 ## Instructions for specific integrations
 
-[Argo and Memphis](/memphis/sdks-and-protocols/nats/argo-and-memphis)
+<Card
+  title="Argo and Memphis"
+  href="/sdks-and-protocols/nats/argo-and-memphis"
+/>
