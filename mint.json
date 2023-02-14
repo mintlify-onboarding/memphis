@@ -84,7 +84,14 @@
         "memphis/cluster-configuration",
         {
           "group": "Comparisons",
-          "pages": [""]
+          "pages": [
+            "memphis/comparisons/nats-jetstream-vs-memphis",
+            "memphis/comparisons/rabbitmq-vs-memphis",
+            "memphis/comparisons/aws-sqs-vs-memphis",
+            "memphis/comparisons/apache-kafka-vs-memphis",
+            "memphis/comparisons/apache-pulsar-vs-memphis",
+            "memphis/comparisons/zeromq-vs-memphis"
+          ]
         },
         "memphis/privacy"
       ]

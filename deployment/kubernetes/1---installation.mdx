@@ -3,11 +3,14 @@ title: "1 - Installation"
 description: "Deploy Memphis over Kubernetes"
 ---
 
-If you prefer using **Terraform**, head [here](/memphis/deployment/cloud-deployment)
+If you prefer using **Terraform**, head
+[here](/memphis/deployment/cloud-deployment)
 
-Helm is a k8s package manager that allows users to deploy apps in a single, configurable command.
+Helm is a k8s package manager that allows users to deploy apps in a single,
+configurable command.
 
-More information about Helm can be found [here](https://helm.sh/docs/topics/charts/).
+More information about Helm can be found
+[here](https://helm.sh/docs/topics/charts/).
 
 Memphis is cloud-native and agnostic to any Kubernetes on **any cloud**.
 
@@ -26,7 +29,6 @@ Docker
 | CPU                        | 2 CPU          |
 | Memory                     | 4GB RAM        |
 | Storage                    | 12GB PVC       |
-
 
 **Recommended Requirements (HA)**
 
@@ -54,7 +56,7 @@ Production
 Production-grade Memphis with three memphis brokers configured in cluster-mode
 
 ```
-helm repo add memphis https://k8s.memphis.dev/charts/ --force-update && 
+helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis --set cluster.enabled="true" memphis/memphis --create-namespace --namespace memphis --wait
 ```
 
@@ -63,7 +65,7 @@ Dev
 Standard installation of Memphis with a single broker
 
 ```
-helm repo add memphis https://k8s.memphis.dev/charts/ --force-update && 
+helm repo add memphis https://k8s.memphis.dev/charts/ --force-update &&
 helm install memphis memphis/memphis --create-namespace --namespace memphis --wait
 ```
 
@@ -78,12 +80,12 @@ helm install memphis memphis/memphis --create-namespace --namespace memphis --wa
 | exporter.enabled          | Prometheus exporter                                                                              | "false"       | "false"                     |
 | analytics                 | Collection of anonymous metadata                                                                 | "true"        | "true"                      |
 | websocket.tls.secret.name | **\*Optional\*** Memphis GUI using websockets for live rendering. K8S secret name for the certs  | ""            | "memphis-ws-tls-secret"     |
-| websocket.tls.cert        | **\*Optional\***Memphis GUI using websockets for live rendering. .pem file to use                | ""            | "memphis\_local.pem"        |
-| websocket.tls.key         | **\*Optional\***Memphis GUI using websockets for live rendering. key file                        | ""            | "memphis-key\_local.pem"    |
+| websocket.tls.cert        | **\*Optional\***Memphis GUI using websockets for live rendering. .pem file to use                | ""            | "memphis_local.pem"         |
+| websocket.tls.key         | **\*Optional\***Memphis GUI using websockets for live rendering. key file                        | ""            | "memphis-key_local.pem"     |
 | nats.tls.verify           | **\*Optional\***For encrypted client-memphis communication. Verification for the CA autority     | ""            | "true"                      |
 | nats.tls.secret.name      | **\*Optional\***For encrypted client-memphis communication. K8S secret name that holds the certs | ""            | "memphis-client-tls-secret" |
-| nats.tls.cert             | **\*Optional\***For encrypted client-memphis communication. .pem file to use                     | ""            | "memphis\_client.pem"       |
-| nats.tls.key              | **\*Optional\***For encrypted client-memphis communication. Private key file to use              | ""            | "memphis-key\_client.pem"   |
+| nats.tls.cert             | **\*Optional\***For encrypted client-memphis communication. .pem file to use                     | ""            | "memphis_client.pem"        |
+| nats.tls.key              | **\*Optional\***For encrypted client-memphis communication. Private key file to use              | ""            | "memphis-key_client.pem"    |
 | nats.tls.ca               | **\*Optional\***For encrypted client-memphis communication. CA file to use                       | ""            | "rootCA.pem"                |
 
 An example with configured options:
@@ -92,7 +94,8 @@ An example with configured options:
 helm install memphis --set cluster.replicas=3,rootPwd="rootpassword" memphis/memphis --create-namespace --namespace memphis
 ```
 
-**Successful deployment** should print the following notes. If not, please raise an issue over [Github](https://github.com/Memphis-OS/memphis-k8s).
+**Successful deployment** should print the following notes. If not, please raise
+an issue over [Github](https://github.com/Memphis-OS/memphis-k8s).
 
 ```
 NAME: memphis
@@ -144,7 +147,8 @@ Broker - Where data flows through
 MongoDB - Internal Database for management
 ```
 
-If the output did not save, or regeneration is needed, please use the following command:
+If the output did not save, or regeneration is needed, please use the following
+command:
 
 ```
 helm get notes memphis -n memphis
@@ -152,12 +156,13 @@ helm get notes memphis -n memphis
 
 #### Deployed Pods
 
-* **memphis-broker-0:** Memphis worker. Responsible for data ingestion and process, just like "Kafka's" brokers
+- **memphis-broker-0:** Memphis worker. Responsible for data ingestion and
+  process, just like "Kafka's" brokers
 
-* **memphis-ui-xxx:** UI. Responsible for delivering a graphical user interface for managing the cluster.
+- **memphis-ui-xxx:** UI. Responsible for delivering a graphical user interface
+  for managing the cluster.
 
-* **memphis-mongodb-0/1:** MongoDB, for Memphis internal usage.
-
+- **memphis-mongodb-0/1:** MongoDB, for Memphis internal usage.
 
 ## Deploy Memphis with TLS (encrypted communication)
 
@@ -182,7 +187,7 @@ $ mkcert -CAROOT
 c) Create self-signed certificates for client
 
 ```
-$ mkcert -client -cert-file client.pem -key-file key-client.pem  localhost ::1 
+$ mkcert -client -cert-file client.pem -key-file key-client.pem  localhost ::1
 ```
 
 ### 1\. Create namespace + secret for the TLS certs
@@ -231,8 +236,7 @@ nats.tls.ca="rootCA.pem"
 
 ### For adding TLS support
 
-1. 1.  
-Create a k8s secret with the provided TLS certs
+1.  Create a k8s secret with the provided TLS certs
 
 ```
 kubectl create secret generic memphis-client-tls-secret \
@@ -241,8 +245,7 @@ kubectl create secret generic memphis-client-tls-secret \
 --from-file=rootCA.pem -n memphis
 ```
 
-1. 2.  
-Upgrade Memphis to use the TLS certs
+1. 2. Upgrade Memphis to use the TLS certs
 
 ```
 helm upgrade memphis memphis -n memphis --reuse-values \
