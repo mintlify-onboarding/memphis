@@ -21,29 +21,29 @@ a production kubernetes environment.
 
 ### Step 1: Create DigitalOcean Kubernetes Cluster
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-29%20at%2023.07.31.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-29-20at-2023.07.31.png)
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-29%20at%2023.07.45.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-29-20at-2023.07.45.png)
 
 Nodes are the servers that provide the Kubernetes compute and storage resources
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-29%20at%2023.08.07.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-29-20at-2023.08.07.png)
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-29%20at%2023.08.38.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-29-20at-2023.08.38.png)
 
 ### Step 2: Connect to the Kubernetes cluster
 
 Follow the below instructions to communicate with the newly created cluster
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-29%20at%2023.11.50.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-29-20at-2023.11.50.png)
 
 ### Step 3: Install Memphis
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-31%20at%2012.40.59.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-31-20at-2012.40.59.png)
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-31%20at%2012.41.04.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-31-20at-2012.41.04.png)
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-08-31%20at%2012.41.24.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-08-31-20at-2012.41.24.png)
 
 We need to create two different load balancers, one for **data** (the broker
 itself) and one for the **UI**.
@@ -119,4 +119,4 @@ To get the public IPs of the load balancers we created before, run
 kubectl get svc
 ```
 
-![](/deployment/cloud-deployment/images/Screen%20Shot%202022-09-04%20at%2023.40.09.png)
+![](/deployment/cloud-deployment/images/Screen-20Shot-202022-09-04-20at-2023.40.09.png)
