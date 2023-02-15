@@ -86,7 +86,7 @@ idempotencyWindowMs: 0, // defaults to 120000
 ```
 
 As explained in
-"[How does it work internally?](/memphis/memphis/concepts/idempotency#how-does-it-work-internally)",
+"[How does it work internally?](/memphis/concepts/idempotency#how-does-it-work-internally)",
 the timer is responsible for the retention of the messages IDs table. For
 example, if 3 hours are chosen, the table will be emptied every three hours.
 
@@ -114,7 +114,7 @@ To avoid the situation, it is recommended to use idempotence producers and set
 
 By configuring `maxMsgDeliveries` to 1, in a sudden failure of the consumer in a
 CG, the entire CG will not receive the same message again, and it will be stored
-automatically in the [DLS](/memphis/memphis/concepts/dead-letter) for supervised
+automatically in the [DLS](/memphis/concepts/dead-letter) for supervised
 retries.
 
 Search terms: Consumed multiple times, duplicate message
