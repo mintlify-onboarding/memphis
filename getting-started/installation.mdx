@@ -2,6 +2,8 @@
 title: "Step 1 - Installation"
 ---
 
+<Frame>![Hero](/images/hero.jpg)</Frame>
+
 ## What is Memphis?
 
 **Memphis** is a next-generation alternative to traditional message brokers.
@@ -41,9 +43,12 @@ helm install memphis memphis/memphis --create-namespace --namespace memphis --wa
 ```
 
 <Card
-  title="For more detailed information about Memphis K8S deployment"
+  title="Memphis K8S"
+  icon="book-open-cover"
   href="/deployment/kubernetes/1---installation"
-/>
+>
+  For more detailed information about Memphis K8S deployment
+</Card>
 
 **Docker compose (Syntax for v2)**
 
@@ -51,14 +56,13 @@ helm install memphis memphis/memphis --create-namespace --namespace memphis --wa
 curl -s https://memphisdev.github.io/memphis-docker/docker-compose.yml -o docker-compose.yml && docker compose -f docker-compose.yml -p memphis up
 ```
 
-<Card
-  title="For more detailed information about Memphis docker deployment"
-  href="/deployment/docker"
-/>
+<Card title="Docker" icon="book-open-cover" href="/deployment/docker">
+  For more detailed information about Memphis docker deployment
+</Card>
 
 ### How does it work?
 
-![](/images/overview.jpeg)
+<Frame>![](/images/overview.jpeg)</Frame>
 
 ## Key Features (v0.4.4)
 

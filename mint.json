@@ -1,4 +1,5 @@
 {
+  "$schema": "https://mintlify.com/schema.json",
   "name": "Memphis",
   "logo": {
     "light": "/logo/light.svg",
@@ -8,23 +9,21 @@
   "colors": {
     "primary": "#6557FF",
     "light": "#53E4C8",
-    "dark": "#2818DA"
+    "dark": "#2818DA",
+    "anchors": {
+      "from": "#61DFC6",
+      "to": "#6557FF"
+    }
   },
   "topbarCtaButton": {
-    "name": "GitHub",
+    "type": "github",
     "url": "https://github.com/memphisdev/memphis-broker"
   },
-  "topbarLinks": [
-    {
-      "name": "Contact Us",
-      "url": "mailto:team@memphis.dev"
-    }
-  ],
   "anchors": [
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://memphis.dev/blog/"
+      "name": "Sandbox",
+      "icon": "pen-ruler",
+      "url": "https://sandbox.memphis.dev"
     },
     {
       "name": "Community",
