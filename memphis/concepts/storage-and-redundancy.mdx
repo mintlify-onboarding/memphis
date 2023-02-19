@@ -1,7 +1,6 @@
 ---
 title: "Storage and Redundancy"
-description:
-  "This section describes the different storage and redundancy options"
+description: "This section describes the different storage and redundancy options"
 ---
 
 ## Introduction
@@ -21,7 +20,7 @@ Each station implements a stream object that contains the messages stored in the
 station. It is up to the user to define which type of storage will this stream
 object be saved.
 
-![](/memphis/concepts/images/stream.jpeg)
+<Frame>![](/memphis/concepts/images/stream.jpeg)</Frame>
 
 ## Replicas (Mirroring)
 
@@ -56,20 +55,20 @@ The options are Memory or Disk. Each with its strengths and weaknesses.
   resides in the broker's memory, and in the case of a station without
   configured replicas, data can be lost.
 
-![](/memphis/concepts/images/storage-20type-20memory.jpeg)
+<Frame>![](/memphis/concepts/images/storage-20type-20memory.jpeg)</Frame>
 
 Stream object as it construct and stored
 
-![](/memphis/concepts/images/mem-20ack.jpeg)
+<Frame>![](/memphis/concepts/images/mem-20ack.jpeg)</Frame>
 
 Ack process
 
 - **Disk.** For higher availability. Disk storage might be slower than memory,
   but it offers greater availability and resiliency to broker failures.
 
-![](/memphis/concepts/images/disk.jpeg)
+<Frame>![](/memphis/concepts/images/disk.jpeg)</Frame>
 
-![Ack process](/memphis/concepts/images/disk-20ack.jpeg)
+<Frame>![Ack process](/memphis/concepts/images/disk-20ack.jpeg)</Frame>
 
 ### Tier 2 (Cold storage)
 

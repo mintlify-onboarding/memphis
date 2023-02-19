@@ -24,7 +24,7 @@ over **three memphis brokers** in cluster mode.
 (\*) The small circle within the brokers emphasizes if they are a
 ["Leader" or "Follower."](/memphis/concepts/station#leaders-and-followers)
 
-![](/images/initial-20state.jpeg)
+<Frame>![](/images/initial-20state.jpeg)</Frame>
 
 ## Scenarios
 
@@ -33,31 +33,31 @@ over **three memphis brokers** in cluster mode.
 Single broker failure, leader or follower. Produce / Consume is working usually.
 No data loss.
 
-![](/memphis/concepts/images/broker-201.jpeg)
+<Frame>![](/memphis/concepts/images/broker-201.jpeg)</Frame>
 
 Broker 2 is down
 
-![](/memphis/concepts/images/broker-202.jpeg)
+<Frame>![](/memphis/concepts/images/broker-202.jpeg)</Frame>
 
 Broker 3 is down
 
-![](/memphis/concepts/images/broker-203.jpeg)
+<Frame>![](/memphis/concepts/images/broker-203.jpeg)</Frame>
 
 Broker (Leader) 1 is down
 
 Two out of three replicas/brokers are down. Produce/Consume will be stopped
 until at least one replica/follower is available. No data loss.
 
-![](/memphis/concepts/images/broker-204.jpeg)
+<Frame>![](/memphis/concepts/images/broker-204.jpeg)</Frame>
 
-![](/memphis/concepts/images/broker-205.jpeg)
+<Frame>![](/memphis/concepts/images/broker-205.jpeg)</Frame>
 
 The entire cluster is down.
 
 Produce/Consume will be stopped until at least one leader and replica/follower
 are available. No data loss.
 
-![](/memphis/concepts/images/broker-206.jpeg)
+<Frame>![](/memphis/concepts/images/broker-206.jpeg)</Frame>
 
 ### 2\. Kubernetes Workers
 
@@ -65,31 +65,31 @@ The kubernetes worker that holds one of the "followers" is down. The cluster
 will wait for the broker to be "Ready." Produce / Consume is working usually. No
 data loss.
 
-![](/memphis/concepts/images/k8s-201.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-201.jpeg)</Frame>
 
-![](/memphis/concepts/images/k8s-202.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-202.jpeg)</Frame>
 
 The kubernetes worker that holds the "leader" is down. The "leader" role has
 been taken over by broker 2\. Producers / Consumers will might require a
 reconnect. No data loss.
 
-![](/memphis/concepts/images/k8s-203.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-203.jpeg)</Frame>
 
 The kubernetes workers that hold the "followers"/"Leader and a follower" are
 down. No quorum for stream. No cluster leader. The station is temporarily
 unavailable. Produce/Consume will be stopped until at least one replica/follower
 is available. No data loss.
 
-![](/memphis/concepts/images/k8s-204.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-204.jpeg)</Frame>
 
-![](/memphis/concepts/images/k8s-205.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-205.jpeg)</Frame>
 
 The Kubernetes cluster is down; therefore, the Memphis cluster is down.
 
 Produce/Consume will be stopped until at least one leader and replica/follower
 are available. No data loss.
 
-![](/memphis/concepts/images/k8s-206.jpeg)
+<Frame>![](/memphis/concepts/images/k8s-206.jpeg)</Frame>
 
 ### 3\. Kubernetes volumes (PVC)
 
@@ -97,31 +97,31 @@ One of the K8S worker's PVs owned by one of the followers is down.
 
 The affected broker and PV require a manual restart.
 
-![](/memphis/concepts/images/pv1.jpeg)
+<Frame>![](/memphis/concepts/images/pv1.jpeg)</Frame>
 
-![](/memphis/concepts/images/pv2.jpeg)
+<Frame>![](/memphis/concepts/images/pv2.jpeg)</Frame>
 
 The leader's volume is down. Data may not be available during the new leader
 election process. Producing messages is suspended until a new leader is elected.
 The affected broker and PV require a manual restart.
 
-![](/memphis/concepts/images/pv3.jpeg)
+<Frame>![](/memphis/concepts/images/pv3.jpeg)</Frame>
 
 Both followers' volumes are down. No quorum for stream. No cluster leader. The
 station is temporarily unavailable. Produce/Consume will be stopped until at
 least one replica/follower is available. No data loss.
 
-![](/memphis/concepts/images/pv4.jpeg)
+<Frame>![](/memphis/concepts/images/pv4.jpeg)</Frame>
 
 Both leader and follower volumes are down. No quorum for stream. No cluster
 leader. The station is temporarily unavailable. Produce/Consume will be stopped
 until at least one replica/follower is available. No data loss.
 
-![](/memphis/concepts/images/pv5.jpeg)
+<Frame>![](/memphis/concepts/images/pv5.jpeg)</Frame>
 
 All volumes are down; therefore, the Memphis cluster is down.
 
 Produce/Consume will be stopped until at least one leader and replica/follower
 are available. No data loss.
 
-![](/memphis/concepts/images/pv6.jpeg)
+<Frame>![](/memphis/concepts/images/pv6.jpeg)</Frame>
