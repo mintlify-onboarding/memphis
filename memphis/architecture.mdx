@@ -14,7 +14,7 @@ Memphis deployment comprised four components:
 **3.** MongoDB - Only for UI state persistency (not used for storing messages).
 Will be replaced in the coming versions.
 
-![](/memphis/images/connectivity-diagram.jpeg)
+<Frame>![](/memphis/images/connectivity-diagram.jpeg)</Frame>
 
 MongoDB is not for data traffic but rather responsible for UI state and metadata
 only and will be removed soon.
@@ -34,19 +34,19 @@ only and will be removed soon.
 
 ### Network architecture diagram
 
-![](/memphis/images/memphis-port-diagram.png)
+<Frame>![](/memphis/images/memphis-port-diagram.png)</Frame>
 
 ## Memphis cluster component diagram (For production)
 
 Full Kubernetes-based layout.
 
-![](/memphis/images/memphis-architecture.jpg)
+<Frame>![](/memphis/images/memphis-architecture.jpg)</Frame>
 
 ## Ordering
 
 Ordering is guaranteed only while working with a single consumer group.
 
-![](/memphis/images/ordering.jpeg)
+<Frame>![](/memphis/images/ordering.jpeg)</Frame>
 
 ## Mirroring
 
@@ -62,7 +62,7 @@ comply with RAFT requirements which are ½ cluster size + 1, On K8S environment,
 three Memphis brokers will be deployed. The minimum number of brokers is three
 to ensure at least one node failure.
 
-![](/memphis/images/replications.jpeg)
+<Frame>![](/memphis/images/replications.jpeg)</Frame>
 
 ## Supported Protocols
 
@@ -81,7 +81,7 @@ to ensure at least one node failure.
 
 ## Deployment sequence
 
-![](/memphis/images/Deployment-process.jpg)
+<Frame>![](/memphis/images/Deployment-process.jpg)</Frame>
 
 ## Requirements
 
